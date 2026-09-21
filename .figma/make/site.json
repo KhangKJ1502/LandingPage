@@ -1,0 +1,10 @@
+{
+  "description": "This web application enhances online reputation and visibility for businesses like nail salons and spas through effective review management and custom website design.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
