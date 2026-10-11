@@ -1,8 +1,8 @@
 import { useLanguage } from "../context/LanguageContext";
 import { useRevealGroup } from "../hooks/useReveal";
-import { Sparkles, ArrowRight, Search, Palette, Smartphone, TrendingUp } from "lucide-react";
+import { Sparkle, ArrowRight, MagnifyingGlass, PaintBrush, DeviceMobile, TrendUp } from "@phosphor-icons/react";
 
-const STEP_ICONS = [Search, Palette, Smartphone, TrendingUp];
+const STEP_ICONS = [MagnifyingGlass, PaintBrush, DeviceMobile, TrendUp];
 const STEP_BADGES = {
   vi: ["Audit 360°", "Thiết kế độc quyền", "Kích hoạt NFC quầy", "Bứt phá doanh thu"],
   en: ["360° Audit", "Bespoke UI/UX", "NFC Counter Live", "Revenue Surge"],
@@ -25,7 +25,7 @@ export default function Process() {
       <div className="max-w-[1240px] mx-auto px-5 md:px-8">
         <div className="max-w-[620px] mb-14">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-mist text-[12.5px] font-semibold text-blue uppercase tracking-widest mb-3.5 shadow-2xs">
-            <Sparkles size={13} className="text-gold" />
+            <Sparkle size={14} weight="fill" className="text-gold" />
             <span>{process.tag}</span>
           </div>
           <h2
@@ -49,7 +49,7 @@ export default function Process() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
             {process.steps.map((step, i) => {
-              const StepIcon = STEP_ICONS[i] || Search;
+              const StepIcon = STEP_ICONS[i] || MagnifyingGlass;
               const badge = badges[i] || "";
 
               return (
@@ -61,7 +61,7 @@ export default function Process() {
                     {/* Step Top Header */}
                     <div className="flex items-center justify-between gap-2 mb-5">
                       <div className="w-12 h-12 rounded-[14px] bg-canvas border border-mist/90 shadow-2xs flex items-center justify-center text-blue group-hover:scale-105 group-hover:bg-blue group-hover:text-white transition-all duration-300">
-                        <StepIcon size={20} />
+                        <StepIcon size={24} weight="duotone" />
                       </div>
                       <span className="text-[11px] font-bold uppercase tracking-wider text-muted-light bg-canvas px-2.5 py-1 rounded-full border border-mist">
                         {badge}
@@ -91,7 +91,7 @@ export default function Process() {
 
                   <div className="mt-5 pt-4 border-t border-mist/70 flex items-center justify-between text-[11.5px] text-muted-light">
                     <span>{isVi ? `Giai đoạn 0${i + 1}` : `Phase 0${i + 1}`}</span>
-                    <span className="font-semibold text-emerald">✓ Chuẩn hoá</span>
+                    <span className="font-semibold text-emerald">{isVi ? "✓ Chuẩn hoá" : "✓ Standardized"}</span>
                   </div>
                 </div>
               );
@@ -112,7 +112,7 @@ export default function Process() {
             className="px-6 py-3 bg-blue hover:bg-blue-hover text-white text-[13.5px] font-semibold rounded-[28px] shrink-0 transition-colors flex items-center gap-2 cursor-pointer shadow-sm"
           >
             <span>{process.calloutButton}</span>
-            <ArrowRight size={14} />
+            <ArrowRight size={15} weight="bold" />
           </button>
         </div>
       </div>

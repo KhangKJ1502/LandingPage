@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useLanguage } from "../context/LanguageContext";
-import { Star, TrendingUp, Sparkles, MapPin, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { Star, TrendUp, Sparkle, MapPin, ArrowRight, CaretLeft, CaretRight } from "@phosphor-icons/react";
 
 export default function Portfolio() {
   const [activeCategory, setActiveCategory] = useState<string>("all");
@@ -15,25 +15,27 @@ export default function Portfolio() {
   const startX = useRef(0);
   const startScrollLeft = useRef(0);
 
-  const { content } = useLanguage();
+  const { content, lang } = useLanguage();
   const { portfolio } = content;
 
   const categories = [
     { key: "all", label: portfolio.allCategory },
     { key: "Nail Salon", label: "Nail Salon" },
     { key: "Spa & Wellness", label: "Spa & Wellness" },
-    { key: "Nhà hàng", label: portfolio.items.find(i => i.category === "Nhà hàng" || i.category === "Restaurant")?.category || "Restaurant" },
-    { key: "Thẩm mỹ viện", label: portfolio.items.find(i => i.category === "Thẩm mỹ viện" || i.category === "Aesthetic Clinic")?.category || "Clinic" },
+    { key: "restaurant", label: lang === "vi" ? "Nhà hàng" : "Restaurant" },
+    { key: "clinic", label: lang === "vi" ? "Thẩm mỹ viện" : "Aesthetic Clinic" },
   ];
 
   const filteredItems =
     activeCategory === "all"
       ? portfolio.items
-      : portfolio.items.filter((item) =>
-          item.category.toLowerCase().includes(activeCategory.toLowerCase()) ||
-          (activeCategory === "Nhà hàng" && (item.category === "Restaurant" || item.category === "Nhà hàng")) ||
-          (activeCategory === "Thẩm mỹ viện" && (item.category === "Aesthetic Clinic" || item.category === "Thẩm mỹ viện"))
-        );
+      : portfolio.items.filter((item) => {
+          if (activeCategory === "Nail Salon") return item.category.toLowerCase().includes("nail");
+          if (activeCategory === "Spa & Wellness") return item.category.toLowerCase().includes("spa");
+          if (activeCategory === "restaurant") return item.category.toLowerCase().includes("nhà hàng") || item.category.toLowerCase().includes("restaurant") || item.category.toLowerCase().includes("dining");
+          if (activeCategory === "clinic") return item.category.toLowerCase().includes("thẩm mỹ") || item.category.toLowerCase().includes("clinic");
+          return item.category.toLowerCase().includes(activeCategory.toLowerCase());
+        });
 
   const toggleView = (name: string) => {
     setViewModes((prev) => ({
@@ -104,7 +106,7 @@ export default function Portfolio() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
           <div className="max-w-[620px]">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-canvas border border-mist text-[12.5px] font-semibold text-blue mb-3.5">
-              <Sparkles size={13} className="text-gold" />
+              <Sparkle size={14} weight="fill" className="text-gold" />
               <span>{portfolio.tag}</span>
             </div>
             <h2
@@ -131,7 +133,7 @@ export default function Portfolio() {
               }`}
               aria-label="Xem dự án trước đó"
             >
-              <ChevronLeft size={20} />
+              <CaretLeft size={20} weight="bold" />
             </button>
             <button
               onClick={scrollNext}
@@ -143,7 +145,7 @@ export default function Portfolio() {
               }`}
               aria-label="Xem dự án tiếp theo"
             >
-              <ChevronRight size={20} />
+              <CaretRight size={20} weight="bold" />
             </button>
           </div>
         </div>
@@ -170,7 +172,9 @@ export default function Portfolio() {
           </div>
 
           <span className="hidden md:inline-block text-[12.5px] text-muted-light font-medium whitespace-nowrap">
-            {filteredItems.length} đối tác tiêu biểu • Trượt ngang để xem
+            {lang === "vi"
+              ? `${filteredItems.length} đối tác tiêu biểu • Trượt ngang để xem`
+              : `${filteredItems.length} featured partners • Slide to explore`}
           </span>
         </div>
 
@@ -244,7 +248,7 @@ export default function Portfolio() {
                     {/* Bottom Image Info */}
                     <div className="absolute bottom-4 left-4 right-4 text-white pointer-events-none">
                       <div className="flex items-center gap-1.5 text-[12px] text-white/85 mb-0.5 font-medium">
-                        <MapPin size={12} className="text-amber shrink-0" />
+                        <MapPin size={13} weight="fill" className="text-amber shrink-0" />
                         <span>{item.location}</span>
                       </div>
                       <h3
@@ -289,7 +293,7 @@ export default function Portfolio() {
                             {portfolio.afterStateTitle}
                           </span>
                           <div className="flex items-center gap-1">
-                            <Star size={12} className="fill-amber text-amber" />
+                            <Star size={13} weight="fill" className="text-amber" />
                             <span className="text-[12px] font-bold text-navy">
                               {item.metrics.ratingAfter}
                             </span>
@@ -302,23 +306,29 @@ export default function Portfolio() {
                     )}
 
                     {/* Metric Highlights Grid */}
-                    <div className="grid grid-cols-3 gap-2">
-                      <div className="p-2.5 bg-canvas rounded-[10px] border border-mist/60 text-center">
-                        <p className="text-[10px] uppercase font-semibold text-muted-light truncate">{portfolio.ratingMetric}</p>
-                        <p className="text-[13px] font-bold text-navy mt-0.5 whitespace-nowrap">
+                    <div className="grid grid-cols-3 gap-1.5 sm:gap-2">
+                      <div className="p-2 sm:p-2.5 bg-canvas rounded-[10px] border border-mist/70 text-center flex flex-col justify-center min-h-[58px] overflow-hidden">
+                        <p className="text-[9.5px] sm:text-[10px] uppercase font-bold text-muted-light tracking-wider truncate mb-0.5">
+                          {portfolio.ratingMetric}
+                        </p>
+                        <p className="text-[11.5px] sm:text-[12.5px] font-extrabold text-navy leading-snug">
                           {item.metrics.ratingBefore} → {item.metrics.ratingAfter}
                         </p>
                       </div>
-                      <div className="p-2.5 bg-canvas rounded-[10px] border border-mist/60 text-center">
-                        <p className="text-[10px] uppercase font-semibold text-muted-light truncate">{portfolio.newReviewsMetric}</p>
-                        <p className="text-[13px] font-bold text-emerald mt-0.5 flex items-center justify-center gap-1 whitespace-nowrap">
-                          <TrendingUp size={12} />
-                          {item.metrics.reviewGrowth}
+                      <div className="p-2 sm:p-2.5 bg-canvas rounded-[10px] border border-mist/70 text-center flex flex-col justify-center min-h-[58px] overflow-hidden">
+                        <p className="text-[9.5px] sm:text-[10px] uppercase font-bold text-muted-light tracking-wider truncate mb-0.5">
+                          {portfolio.newReviewsMetric}
+                        </p>
+                        <p className="text-[11.5px] sm:text-[12.5px] font-extrabold text-emerald leading-snug flex items-center justify-center gap-0.5">
+                          <TrendUp size={12} weight="bold" className="shrink-0" />
+                          <span>{item.metrics.reviewGrowth}</span>
                         </p>
                       </div>
-                      <div className="p-2.5 bg-canvas rounded-[10px] border border-mist/60 text-center">
-                        <p className="text-[10px] uppercase font-semibold text-muted-light truncate">{portfolio.conversionMetric}</p>
-                        <p className="text-[13px] font-bold text-blue mt-0.5 whitespace-nowrap">
+                      <div className="p-2 sm:p-2.5 bg-canvas rounded-[10px] border border-mist/70 text-center flex flex-col justify-center min-h-[58px] overflow-hidden">
+                        <p className="text-[9.5px] sm:text-[10px] uppercase font-bold text-muted-light tracking-wider truncate mb-0.5">
+                          {portfolio.conversionMetric}
+                        </p>
+                        <p className="text-[11.5px] sm:text-[12.5px] font-extrabold text-blue leading-snug">
                           {item.metrics.leadGrowth}
                         </p>
                       </div>
@@ -332,7 +342,7 @@ export default function Portfolio() {
                     className="w-full py-2.5 bg-canvas hover:bg-navy hover:text-white border border-mist text-navy text-[12.5px] font-semibold rounded-[32px] transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer group/btn"
                   >
                     <span>{portfolio.ctaButton}</span>
-                    <ArrowRight size={13} className="group-hover/btn:translate-x-0.5 transition-transform" />
+                    <ArrowRight size={14} weight="bold" className="group-hover/btn:translate-x-0.5 transition-transform" />
                   </button>
                 </div>
               </article>
@@ -343,7 +353,9 @@ export default function Portfolio() {
         {/* Mobile Navigation Arrows & Hint */}
         <div className="flex sm:hidden items-center justify-between mt-4 px-2">
           <span className="text-[12px] text-muted">
-            Vuốt ngang để xem thêm {filteredItems.length} dự án
+            {lang === "vi"
+              ? `Vuốt ngang để xem thêm ${filteredItems.length} dự án`
+              : `Swipe horizontally for ${filteredItems.length} more cases`}
           </span>
           <div className="flex items-center gap-2">
             <button
@@ -353,7 +365,7 @@ export default function Portfolio() {
                 canScrollLeft ? "bg-white text-navy border-slate-border" : "opacity-40 border-mist text-muted"
               }`}
             >
-              <ChevronLeft size={16} />
+              <CaretLeft size={16} weight="bold" />
             </button>
             <button
               onClick={scrollNext}
@@ -362,7 +374,7 @@ export default function Portfolio() {
                 canScrollRight ? "bg-navy text-white border-navy" : "opacity-40 border-mist text-muted"
               }`}
             >
-              <ChevronRight size={16} />
+              <CaretRight size={16} weight="bold" />
             </button>
           </div>
         </div>

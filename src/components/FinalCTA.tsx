@@ -1,4 +1,4 @@
-import { ArrowRight, Phone, Sparkles } from "lucide-react";
+import { ArrowRight, PhoneCall, Sparkle } from "@phosphor-icons/react";
 import { useLanguage } from "../context/LanguageContext";
 import { useReveal } from "../hooks/useReveal";
 
@@ -29,7 +29,7 @@ export default function FinalCTA() {
 
           <div className="relative z-10 max-w-[680px] mx-auto">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-[12px] font-semibold text-gold mb-5 shadow-xs">
-              <Sparkles size={13} className="text-gold" />
+              <Sparkle size={14} weight="fill" className="text-gold" />
               <span>{finalCta.badge}</span>
             </div>
 
@@ -53,14 +53,14 @@ export default function FinalCTA() {
                 className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-4 bg-blue hover:bg-blue-hover text-white text-[15px] font-semibold rounded-[32px] shadow-lg shadow-blue/30 transition-all duration-200 cursor-pointer"
               >
                 <span>{finalCta.ctaAudit}</span>
-                <ArrowRight size={16} aria-hidden="true" />
+                <ArrowRight size={16} weight="bold" aria-hidden="true" />
               </button>
 
               <a
                 href={site.hotlineHref}
                 className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-4 bg-white/10 hover:bg-white/15 border border-white/20 text-white text-[15px] font-semibold rounded-[32px] transition-colors"
               >
-                <Phone size={16} className="text-gold" />
+                <PhoneCall size={18} weight="duotone" className="text-gold" />
                 <span>{finalCta.hotlinePrefix}: {site.hotline}</span>
               </a>
             </div>

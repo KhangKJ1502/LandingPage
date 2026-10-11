@@ -1,4 +1,4 @@
-import { Phone, Mail, MapPin, Sparkles, ArrowUp } from "lucide-react";
+import { PhoneCall, EnvelopeSimple, MapPin, ArrowUp } from "@phosphor-icons/react";
 import { useLanguage } from "../context/LanguageContext";
 import LanguageToggle from "./LanguageToggle";
 
@@ -44,16 +44,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 mb-14">
           {/* Brand & Mission Column */}
           <div className="lg:col-span-4">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-8 h-8 rounded-[8px] bg-gradient-to-br from-blue to-navy-light flex items-center justify-center border border-white/20">
-                <Sparkles size={15} className="text-gold" />
+            <div className="mb-5 inline-block">
+              <div className="p-2.5 rounded-2xl bg-white/95 backdrop-blur-md shadow-md inline-flex items-center border border-white/20">
+                <img
+                  src="/logo.png"
+                  alt={site.name}
+                  className="h-11 sm:h-12 w-auto object-contain"
+                />
               </div>
-              <span
-                className="font-bold text-white text-[19px] tracking-tight"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                {site.name}
-              </span>
             </div>
             <p className="text-[14px] leading-relaxed text-white/60 mb-6 max-w-[340px]">
               {site.tagline} {footer.description}
@@ -64,8 +62,8 @@ export default function Footer() {
                 href={site.hotlineHref}
                 className="flex items-center gap-2.5 text-white/80 hover:text-white transition-colors"
               >
-                <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center text-gold">
-                  <Phone size={12} />
+                <div className="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center text-gold">
+                  <PhoneCall size={14} weight="duotone" />
                 </div>
                 <span>Hotline: {site.hotline}</span>
               </a>
@@ -73,14 +71,14 @@ export default function Footer() {
                 href={`mailto:${site.email}`}
                 className="flex items-center gap-2.5 text-white/80 hover:text-white transition-colors"
               >
-                <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center text-blue">
-                  <Mail size={12} />
+                <div className="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center text-blue">
+                  <EnvelopeSimple size={14} weight="duotone" />
                 </div>
                 <span>{site.email}</span>
               </a>
               <div className="flex items-start gap-2.5 text-white/60">
-                <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center text-muted-light mt-0.5">
-                  <MapPin size={12} />
+                <div className="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center text-muted-light mt-0.5">
+                  <MapPin size={14} weight="duotone" />
                 </div>
                 <span>{site.address}</span>
               </div>
@@ -189,7 +187,7 @@ export default function Footer() {
               className="flex items-center gap-1 hover:text-white transition-colors cursor-pointer"
             >
               <span>{footer.backToTop}</span>
-              <ArrowUp size={12} />
+              <ArrowUp size={13} weight="bold" />
             </button>
           </div>
         </div>

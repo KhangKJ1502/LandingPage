@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import { useRevealGroup } from "../hooks/useReveal";
-import { Award, CheckCircle2 } from "lucide-react";
+import { Medal, CheckCircle } from "@phosphor-icons/react";
 
 function useCountUp(target: number, duration = 1400, active: boolean) {
   const [count, setCount] = useState(0);
@@ -59,7 +59,7 @@ function StatItem({
         </p>
       </div>
       <p className="text-[16px] font-semibold text-navy mb-1.5 flex items-center gap-1.5">
-        {stat.emerald && <CheckCircle2 size={15} className="text-emerald shrink-0" />}
+        {stat.emerald && <CheckCircle size={16} weight="fill" className="text-emerald shrink-0" />}
         {stat.label}
       </p>
       <p className="text-[13px] text-muted leading-snug">{stat.note}</p>
@@ -110,7 +110,7 @@ export default function TrustStats() {
             </h2>
           </div>
           <div className="flex items-center gap-2 text-[12.5px] text-muted-light">
-            <Award size={15} className="text-gold" />
+            <Medal size={17} weight="duotone" className="text-gold" />
             <span>{trustStats.sourceContext}</span>
           </div>
         </div>

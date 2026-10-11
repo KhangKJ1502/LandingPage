@@ -1,5 +1,5 @@
 import { useLanguage } from "../context/LanguageContext";
-import { Globe } from "lucide-react";
+import { Globe } from "@phosphor-icons/react";
 
 export default function LanguageToggle({ className = "" }: { className?: string }) {
   const { lang, setLang, isSwitching, switchingTo } = useLanguage();
@@ -11,7 +11,7 @@ export default function LanguageToggle({ className = "" }: { className?: string 
       aria-label="Language switcher"
     >
       <div className="pl-2 pr-1.5 text-muted-light hidden md:flex items-center">
-        <Globe size={14} aria-hidden="true" />
+        <Globe size={15} weight="duotone" aria-hidden="true" />
       </div>
 
       <div className="flex items-center gap-0.5">

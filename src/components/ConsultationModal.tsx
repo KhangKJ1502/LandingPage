@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { X, CheckCircle2, Send, Sparkles, ShieldCheck, Clock, AlertCircle } from "lucide-react";
+import { X, CheckCircle, PaperPlaneTilt, Sparkle, ShieldCheck, Clock, WarningCircle } from "@phosphor-icons/react";
 import { useLanguage } from "../context/LanguageContext";
 
 type FormState = "idle" | "loading" | "success";
@@ -138,13 +138,13 @@ export default function ConsultationModal() {
           className="absolute top-4.5 right-4.5 w-8 h-8 rounded-full bg-canvas hover:bg-light-slate text-muted hover:text-navy flex items-center justify-center transition-colors cursor-pointer border border-mist focus-visible:rounded-full"
           aria-label="Close dialog"
         >
-          <X size={16} />
+          <X size={16} weight="bold" />
         </button>
 
         {state === "success" ? (
           <div className="py-4 text-center">
             <div className="w-14 h-14 rounded-full bg-emerald-subtle text-emerald flex items-center justify-center mx-auto mb-4 shadow-xs">
-              <CheckCircle2 size={32} />
+              <CheckCircle size={36} weight="fill" />
             </div>
             <h3
               id="modal-title"
@@ -158,7 +158,7 @@ export default function ConsultationModal() {
             </p>
             <div className="p-3.5 bg-canvas rounded-[12px] border border-mist max-w-[420px] mx-auto text-left mb-5 text-[12.5px] text-muted space-y-1">
               <p className="font-semibold text-navy flex items-center gap-1.5">
-                <Clock size={13} className="text-blue shrink-0" />
+                <Clock size={15} weight="duotone" className="text-blue shrink-0" />
                 <span>{contact.successNextTitle}</span>
               </p>
               <p>{contact.successNextDesc}</p>
@@ -183,7 +183,7 @@ export default function ConsultationModal() {
             {/* Compact Header */}
             <div className="pr-8 mb-4">
               <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-canvas border border-mist text-[11px] font-semibold text-blue mb-1.5">
-                <Sparkles size={11} className="text-gold" />
+                <Sparkle size={13} weight="fill" className="text-gold" />
                 <span>{contact.tag}</span>
               </div>
               <h2
@@ -250,7 +250,7 @@ export default function ConsultationModal() {
                   />
                   {errors.name && (
                     <p id="modal-name-err" role="alert" className="text-[11px] text-amber-600 font-medium mt-0.5 flex items-center gap-1">
-                      <AlertCircle size={11} className="shrink-0" />
+                      <WarningCircle size={13} weight="fill" className="shrink-0" />
                       <span>{errors.name}</span>
                     </p>
                   )}
@@ -280,7 +280,7 @@ export default function ConsultationModal() {
                   />
                   {errors.phone && (
                     <p id="modal-phone-err" role="alert" className="text-[11px] text-amber-600 font-medium mt-0.5 flex items-center gap-1">
-                      <AlertCircle size={11} className="shrink-0" />
+                      <WarningCircle size={13} weight="fill" className="shrink-0" />
                       <span>{errors.phone}</span>
                     </p>
                   )}
@@ -317,7 +317,7 @@ export default function ConsultationModal() {
                   </select>
                   {errors.businessType && (
                     <p id="modal-biz-err" role="alert" className="text-[11px] text-amber-600 font-medium mt-0.5 flex items-center gap-1">
-                      <AlertCircle size={11} className="shrink-0" />
+                      <WarningCircle size={13} weight="fill" className="shrink-0" />
                       <span>{errors.businessType}</span>
                     </p>
                   )}
@@ -369,13 +369,13 @@ export default function ConsultationModal() {
                   ) : (
                     <>
                       <span>{contact.submitButton}</span>
-                      <Send size={13} />
+                      <PaperPlaneTilt size={15} weight="fill" />
                     </>
                   )}
                 </button>
 
                 <div className="flex items-center justify-center gap-1.5 mt-2 text-[11px] text-muted-light text-center">
-                  <ShieldCheck size={12} className="text-emerald shrink-0" />
+                  <ShieldCheck size={14} weight="duotone" className="text-emerald shrink-0" />
                   <span className="truncate max-w-[460px]">{contact.privacyNote}</span>
                 </div>
               </div>

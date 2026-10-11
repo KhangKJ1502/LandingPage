@@ -1,4 +1,4 @@
-import { Star, Monitor, ArrowRight, CheckCircle2, ShieldCheck, Sparkles } from "lucide-react";
+import { Star, Desktop, ArrowRight, CheckCircle, ShieldCheck, Sparkle } from "@phosphor-icons/react";
 import { useLanguage } from "../context/LanguageContext";
 import { useRevealGroup } from "../hooks/useReveal";
 
@@ -17,7 +17,7 @@ export default function Services() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
           <div className="max-w-[560px]">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-canvas border border-mist text-[12px] font-semibold text-blue uppercase tracking-widest mb-3">
-              <Sparkles size={13} className="text-gold" />
+              <Sparkle size={14} weight="fill" className="text-gold" />
               <span>{services.tag}</span>
             </div>
             <h2
@@ -47,9 +47,9 @@ export default function Services() {
                   <div className="flex items-start justify-between gap-4 mb-6">
                     <div className="w-13 h-13 rounded-[14px] bg-canvas border border-mist flex items-center justify-center group-hover:scale-105 group-hover:border-blue/30 transition-all duration-300">
                       {isReview ? (
-                        <Star size={24} className="text-amber fill-amber/20" />
+                        <Star size={24} weight="duotone" className="text-amber" />
                       ) : (
-                        <Monitor size={24} className="text-blue" />
+                        <Desktop size={24} weight="duotone" className="text-blue" />
                       )}
                     </div>
                     <span className="text-[11.5px] font-bold uppercase tracking-wider text-muted-light bg-canvas px-3 py-1 rounded-full border border-mist">
@@ -78,7 +78,7 @@ export default function Services() {
                     </p>
                     {service.deliverables.map((item, idx) => (
                       <div key={idx} className="flex items-start gap-2.5">
-                        <CheckCircle2 size={15} className="text-emerald shrink-0 mt-0.5" />
+                        <CheckCircle size={16} weight="duotone" className="text-emerald shrink-0 mt-0.5" />
                         <span className="text-[13.5px] text-navy/90">{item}</span>
                       </div>
                     ))}
@@ -88,7 +88,7 @@ export default function Services() {
                 <div>
                   {/* Measurable Outcome Box */}
                   <div className="flex items-start gap-3 p-3.5 bg-canvas rounded-[12px] border border-mist/60 mb-6">
-                    <ShieldCheck size={18} className="text-emerald shrink-0 mt-0.5" />
+                    <ShieldCheck size={20} weight="duotone" className="text-emerald shrink-0 mt-0.5" />
                     <div>
                       <span className="text-[11px] font-semibold text-emerald uppercase tracking-wider block">
                         {services.outcomeLabel}
@@ -112,7 +112,7 @@ export default function Services() {
                       }`}
                   >
                     <span>{service.cta}</span>
-                    <ArrowRight size={14} aria-hidden="true" />
+                    <ArrowRight size={15} weight="bold" aria-hidden="true" />
                   </a>
                 </div>
               </article>

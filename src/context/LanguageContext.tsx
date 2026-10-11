@@ -61,7 +61,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     document.documentElement.lang = lang;
     if (lang === "en") {
-      document.title = "Craft Web Studio — 5-Star Review Growth & Conversion Website Design";
+      document.title = "Sunflower Marketing LLC";
       const metaDesc = document.querySelector('meta[name="description"]');
       if (metaDesc) {
         metaDesc.setAttribute(
@@ -70,7 +70,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
         );
       }
     } else {
-      document.title = "Craft Web Studio — Quản Lý Review 5 Sao & Thiết Kế Website Local Business";
+      document.title = "Sunflower Marketing LLC";
       const metaDesc = document.querySelector('meta[name="description"]');
       if (metaDesc) {
         metaDesc.setAttribute(

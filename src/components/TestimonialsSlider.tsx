@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import { Star, ChevronLeft, ChevronRight, Quote, Sparkles, CheckCircle2 } from "lucide-react";
+import { Star, CaretLeft, CaretRight, Quotes, Sparkle, CheckCircle } from "@phosphor-icons/react";
 import { useLanguage } from "../context/LanguageContext";
 import { useReveal } from "../hooks/useReveal";
 
@@ -72,7 +72,7 @@ export default function TestimonialsSlider() {
         {/* Section Header */}
         <div className="text-center max-w-[620px] mx-auto mb-12">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-mist text-[12.5px] font-semibold text-blue mb-3.5 shadow-2xs">
-            <Sparkles size={13} className="text-gold" />
+            <Sparkle size={14} weight="fill" className="text-gold" />
             <span>{testimonials.tag}</span>
           </div>
           <h2
@@ -112,13 +112,13 @@ export default function TestimonialsSlider() {
             {/* Top quote icon & stars */}
             <div className="flex items-center justify-between gap-4 mb-8">
               <div className="w-12 h-12 rounded-[14px] bg-blue/10 flex items-center justify-center text-blue shadow-2xs">
-                <Quote size={24} className="rotate-180" />
+                <Quotes size={24} weight="duotone" />
               </div>
 
               <div className="flex items-center gap-1.5 bg-canvas px-3.5 py-1.5 rounded-full border border-mist">
                 <div className="flex gap-0.5">
                   {[...Array(item.stars)].map((_, i) => (
-                    <Star key={i} size={14} className="fill-amber text-amber" />
+                    <Star key={i} size={14} weight="fill" className="text-amber" />
                   ))}
                 </div>
                 <span className="text-[12px] font-bold text-navy ml-1">5.0 / 5.0</span>
@@ -148,7 +148,7 @@ export default function TestimonialsSlider() {
                         {item.author}
                       </p>
                       <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald bg-emerald-subtle px-2 py-0.5 rounded-full">
-                        <CheckCircle2 size={11} />
+                        <CheckCircle size={12} weight="fill" />
                         {testimonials.verifiedBadge}
                       </span>
                     </div>
@@ -191,14 +191,14 @@ export default function TestimonialsSlider() {
                   className="w-10 h-10 rounded-full border border-mist bg-white hover:bg-canvas text-navy flex items-center justify-center transition-colors cursor-pointer active:scale-95 shadow-2xs"
                   aria-label="Previous testimonial"
                 >
-                  <ChevronLeft size={18} />
+                  <CaretLeft size={18} weight="bold" />
                 </button>
                 <button
                   onClick={nextSlide}
                   className="w-10 h-10 rounded-full border border-mist bg-white hover:bg-canvas text-navy flex items-center justify-center transition-colors cursor-pointer active:scale-95 shadow-2xs"
                   aria-label="Next testimonial"
                 >
-                  <ChevronRight size={18} />
+                  <CaretRight size={18} weight="bold" />
                 </button>
               </div>
             </div>

@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { ArrowRight, CheckCircle2, AlertCircle, Star, ShieldCheck, MapPin, Sparkles, TrendingUp } from "lucide-react";
+import { ArrowRight, CheckCircle, WarningCircle, Star, ShieldCheck, MapPin, Sparkle, TrendUp } from "@phosphor-icons/react";
 import { useLanguage } from "../context/LanguageContext";
 import { PARTNER_BRANDS } from "../constants";
 import StoreShowcaseSlider from "./StoreShowcaseSlider";
@@ -92,7 +92,7 @@ export default function Hero() {
             <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 bg-white/90 border border-mist rounded-[40px] shadow-[0_2px_8px_-2px_rgba(0,0,0,0.04)] text-[12.5px] text-navy font-medium mb-6">
               <div className="flex items-center gap-0.5">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={12} className="fill-amber text-amber" aria-hidden="true" />
+                  <Star key={i} size={13} weight="fill" className="text-amber" aria-hidden="true" />
                 ))}
               </div>
               <span className="w-1 h-1 rounded-full bg-slate-border" />
@@ -126,7 +126,7 @@ export default function Hero() {
                 <div className="luxury-card rounded-[16px] p-6 border-l-4 border-l-emerald animate-in fade-in zoom-in-95 duration-300">
                   <div className="flex items-start gap-4">
                     <div className="w-10 h-10 rounded-full bg-emerald-subtle flex items-center justify-center shrink-0">
-                      <CheckCircle2 size={22} className="text-emerald" aria-hidden="true" />
+                      <CheckCircle size={24} weight="duotone" className="text-emerald" aria-hidden="true" />
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center justify-between">
@@ -162,7 +162,7 @@ export default function Hero() {
                   <div className="relative p-2 bg-white rounded-[36px] border border-mist shadow-[0_4px_24px_-4px_rgba(15,23,42,0.06)] hover:border-slate-border focus-within:border-blue transition-all duration-300">
                     <div className="flex flex-col sm:flex-row gap-2">
                       <div className="relative flex-1 flex items-center pl-4">
-                        <MapPin size={17} className="text-muted-light shrink-0 mr-2" aria-hidden="true" />
+                        <MapPin size={18} weight="duotone" className="text-muted-light shrink-0 mr-2" aria-hidden="true" />
                         <label htmlFor="audit-url" className="sr-only">
                           Google Maps or Website URL
                         </label>
@@ -199,7 +199,7 @@ export default function Hero() {
                         ) : (
                           <>
                             <span>{hero.ctaButton}</span>
-                            <ArrowRight size={14} aria-hidden="true" />
+                            <ArrowRight size={15} weight="bold" aria-hidden="true" />
                           </>
                         )}
                       </button>
@@ -212,14 +212,14 @@ export default function Hero() {
                       role="alert"
                       className="flex items-center gap-1.5 mt-2.5 ml-4 text-[13px] text-navy font-medium"
                     >
-                      <AlertCircle size={14} className="text-amber shrink-0" aria-hidden="true" />
+                      <WarningCircle size={15} weight="duotone" className="text-amber shrink-0" aria-hidden="true" />
                       <span>{fieldError}</span>
                     </p>
                   )}
 
                   <div className="flex items-center gap-4 mt-3 ml-4 text-[12px] text-muted-light">
                     <span className="flex items-center gap-1.5">
-                      <ShieldCheck size={14} className="text-emerald" />
+                      <ShieldCheck size={16} weight="duotone" className="text-emerald" />
                       {hero.freeAuditBadge}
                     </span>
                     <span>•</span>
@@ -240,11 +240,11 @@ export default function Hero() {
         {/* Partner Brands Continuous Sliding Marquee */}
         <div className="mt-16 pt-8 border-t border-mist/80">
           <div className="flex items-center justify-center gap-2 mb-6">
-            <Sparkles size={12} className="text-gold" />
+            <Sparkle size={13} weight="fill" className="text-gold" />
             <p className="text-center text-[11.5px] font-bold uppercase tracking-[0.2em] text-muted-light">
               {hero.partnerTitle}
             </p>
-            <Sparkles size={12} className="text-gold" />
+            <Sparkle size={13} weight="fill" className="text-gold" />
           </div>
 
           {/* Marquee viewport with gradient fade edges */}

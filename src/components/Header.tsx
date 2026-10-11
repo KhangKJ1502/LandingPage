@@ -1,5 +1,5 @@
-import { useState, useEffect, useCallback } from "react";
-import { Menu, X, Phone, ArrowUpRight, Sparkles } from "lucide-react";
+import { useState, useEffect, useCallback, useRef } from "react";
+import { List, X, PhoneCall, ArrowUpRight } from "@phosphor-icons/react";
 import { useLanguage } from "../context/LanguageContext";
 import LanguageToggle from "./LanguageToggle";
 
@@ -7,17 +7,20 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("");
+  const isClickingRef = useRef(false);
+  const clickTimerRef = useRef<number | null>(null);
   const { content, openConsultation } = useLanguage();
   const { site, nav } = content;
 
   useEffect(() => {
-    const sectionIds = nav.links.map((link) => link.href.replace("#", ""));
-
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
 
+      // If user just clicked a nav tab, don't let scroll spy overwrite it during smooth scroll
+      if (isClickingRef.current) return;
+
       // Near top of page (Home / Hero)
-      if (window.scrollY < 240) {
+      if (window.scrollY < 200) {
         setActiveSection("");
         return;
       }
@@ -28,24 +31,50 @@ export default function Header() {
         return;
       }
 
-      // Find visible section relative to header
-      const headerOffset = 110;
-      for (let i = sectionIds.length - 1; i >= 0; i--) {
-        const id = sectionIds[i];
+      // Find which section is currently active based on viewport position
+      const headerOffset = 130;
+      let matched = "";
+
+      // Walk through sections in their actual display order
+      for (const link of nav.links) {
+        const id = link.href.replace("#", "");
         const el = document.getElementById(id);
         if (el) {
           const rect = el.getBoundingClientRect();
-          if (rect.top <= headerOffset) {
-            setActiveSection(`#${id}`);
-            return;
+          // Active if top is at/above header offset and bottom is still visible
+          if (rect.top <= headerOffset && rect.bottom > headerOffset) {
+            matched = link.href;
+            break;
           }
         }
+      }
+
+      // Fallback: choose the last section whose top has passed the header offset
+      if (!matched) {
+        for (let i = nav.links.length - 1; i >= 0; i--) {
+          const id = nav.links[i].href.replace("#", "");
+          const el = document.getElementById(id);
+          if (el) {
+            const rect = el.getBoundingClientRect();
+            if (rect.top <= headerOffset) {
+              matched = nav.links[i].href;
+              break;
+            }
+          }
+        }
+      }
+
+      if (matched) {
+        setActiveSection(matched);
       }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (clickTimerRef.current) clearTimeout(clickTimerRef.current);
+    };
   }, [nav.links]);
 
   const close = useCallback(() => setOpen(false), []);
@@ -53,9 +82,17 @@ export default function Header() {
   const handleNavClick = (href: string) => {
     close();
     setActiveSection(href);
+
+    // Lock scroll spy while smooth scrolling
+    isClickingRef.current = true;
+    if (clickTimerRef.current) clearTimeout(clickTimerRef.current);
+    clickTimerRef.current = window.setTimeout(() => {
+      isClickingRef.current = false;
+    }, 900);
+
     const el = document.querySelector(href);
     if (el) {
-      const headerOffset = 84;
+      const headerOffset = 80;
       const elementPosition = el.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
       window.scrollTo({
@@ -75,25 +112,33 @@ export default function Header() {
         }`}
       >
         <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
-          {/* 1. Left: Brand Logo & Monogram */}
+          {/* 1. Left: Brand Logo & Company Name */}
           <a
             href="/"
-            className="flex items-center gap-3 group shrink-0 focus-visible:rounded-xl"
+            className="flex items-center gap-2.5 sm:gap-3 group shrink-0 focus-visible:rounded-xl py-1"
             aria-label={`${site.name} — Home`}
           >
-            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-[12px] bg-gradient-to-br from-navy via-navy-light to-obsidian border border-slate-border/50 flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform duration-300 shrink-0">
-              <Sparkles size={18} className="text-gold" />
-            </div>
-            <div className="flex flex-col">
+            <img
+              src="/logo.png"
+              alt={site.name}
+              className="h-10 sm:h-12 w-auto object-contain group-hover:scale-105 transition-transform duration-300 shrink-0"
+            />
+            <div className="flex flex-col justify-center select-none">
               <span
-                className="font-bold text-navy text-[18px] sm:text-[19px] tracking-tight leading-tight group-hover:text-blue transition-colors"
+                className="text-[15px] sm:text-[16px] font-bold text-navy leading-none tracking-tight group-hover:text-blue transition-colors"
                 style={{ fontFamily: "var(--font-display)" }}
               >
-                {site.name}
+                Sunflower
               </span>
-              <span className="text-[10px] uppercase tracking-[0.14em] text-muted-light font-semibold">
-                Review & Web Studio
-              </span>
+              <div
+                className="flex items-center text-[15px] sm:text-[16px] font-bold text-blue leading-none tracking-tight mt-1 group-hover:text-navy transition-colors"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                <span className="invisible select-none pointer-events-none tracking-tight" aria-hidden="true">
+                  Sun
+                </span>
+                <span>Marketing</span>
+              </div>
             </div>
           </a>
 
@@ -151,7 +196,7 @@ export default function Header() {
               aria-controls="mobile-menu"
               aria-label={open ? "Close menu" : "Open menu"}
             >
-              {open ? <X size={20} /> : <Menu size={20} />}
+              {open ? <X size={20} weight="bold" /> : <List size={22} weight="bold" />}
             </button>
           </div>
         </div>
@@ -214,7 +259,7 @@ export default function Header() {
                 href={site.hotlineHref}
                 className="flex items-center justify-center gap-2 py-3.5 rounded-xl bg-canvas border border-mist text-[14.5px] font-semibold text-navy hover:bg-light-slate transition-colors"
               >
-                <Phone size={16} className="text-blue" aria-hidden="true" />
+                <PhoneCall size={18} weight="duotone" className="text-blue" aria-hidden="true" />
                 <span>{nav.hotlineLabel}: {site.hotline}</span>
               </a>
               <button

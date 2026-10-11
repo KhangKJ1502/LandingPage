@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
-import { Sparkles, ClipboardCheck, MessageCircle, Phone, X, ArrowUpRight, ArrowUp } from "lucide-react";
+import { Sparkle, ClipboardText, ChatTeardropDots, PhoneCall, X, ArrowUpRight, ArrowUp } from "@phosphor-icons/react";
 import { useLanguage } from "../context/LanguageContext";
+import { SITE } from "../constants";
 
 export default function FloatingConsultation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -88,7 +89,7 @@ export default function FloatingConsultation() {
 
             {/* Option 1: Facebook Messenger */}
             <a
-              href="https://m.me/craftwebstudio"
+              href={SITE.messengerHref}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setIsOpen(false)}
@@ -114,19 +115,19 @@ export default function FloatingConsultation() {
 
             {/* Option 2: Hotline */}
             <a
-              href="tel:0909123456"
+              href={SITE.hotlineHref}
               onClick={() => setIsOpen(false)}
               className="group flex items-center gap-3 p-2.5 rounded-[14px] hover:bg-canvas transition-colors duration-150 cursor-pointer text-left"
             >
               <div className="w-10 h-10 rounded-[12px] bg-emerald-subtle text-emerald flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-200">
-                <Phone size={18} />
+                <PhoneCall size={20} weight="duotone" />
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center justify-between">
                   <p className="text-[13.5px] font-bold text-navy group-hover:text-emerald transition-colors">
-                    0909 123 456
+                    {SITE.hotline}
                   </p>
-                  <ArrowUpRight size={13} className="text-muted-light group-hover:text-emerald shrink-0" />
+                  <ArrowUpRight size={14} className="text-muted-light group-hover:text-emerald shrink-0" />
                 </div>
                 <p className="text-[11.5px] text-muted truncate">
                   {isVi ? "Tư vấn viên chuyên trách cơ sở" : "Call direct senior concierge"}
@@ -144,14 +145,14 @@ export default function FloatingConsultation() {
               className="group flex items-center gap-3 p-2.5 rounded-[14px] bg-canvas/80 hover:bg-navy hover:text-white transition-all duration-200 cursor-pointer text-left border border-mist/80"
             >
               <div className="w-10 h-10 rounded-[12px] bg-navy text-white group-hover:bg-white group-hover:text-navy flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 transition-all duration-200">
-                <ClipboardCheck size={18} />
+                <ClipboardText size={20} weight="duotone" />
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center justify-between">
                   <p className="text-[13.5px] font-bold text-navy group-hover:text-white transition-colors">
                     {isVi ? "Thẩm định Audit 0đ" : "Free Audit Report"}
                   </p>
-                  <Sparkles size={13} className="text-gold shrink-0" />
+                  <Sparkle size={14} weight="fill" className="text-gold shrink-0" />
                 </div>
                 <p className="text-[11.5px] text-muted group-hover:text-white/80 transition-colors truncate">
                   {isVi ? "Báo cáo phân tích chuyên sâu" : "Full scorecard report in 24h"}
@@ -176,7 +177,7 @@ export default function FloatingConsultation() {
           aria-label={isVi ? "Cuộn về đầu trang" : "Scroll to top"}
           title={isVi ? "Về đầu trang" : "Back to top"}
         >
-          <ArrowUp size={20} className="stroke-[2.2] group-hover:-translate-y-0.5 transition-transform duration-200" />
+          <ArrowUp size={20} weight="bold" className="group-hover:-translate-y-0.5 transition-transform duration-200" />
           
           {/* Subtle hover tooltip */}
           <span className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-0.5 bg-navy/90 text-white text-[11px] font-medium rounded-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none shadow-sm backdrop-blur-xs">
@@ -197,14 +198,14 @@ export default function FloatingConsultation() {
           aria-expanded={isOpen}
           aria-label={isVi ? "Mở menu liên hệ tư vấn" : "Open contact options menu"}
         >
-          {/* Animated Icon: MessageCircle morphed into X when open */}
+          {/* Animated Icon: ChatTeardropDots morphed into X when open */}
           <div className="relative flex items-center justify-center transition-transform duration-300">
             {isOpen ? (
-              <X size={22} className="rotate-0 transition-transform duration-200" />
+              <X size={22} weight="bold" className="rotate-0 transition-transform duration-200" />
             ) : (
               <>
-                <MessageCircle size={22} className="group-hover:scale-110 transition-transform duration-200" />
-                <Sparkles size={11} className="absolute -top-1.5 -right-1.5 text-gold" />
+                <ChatTeardropDots size={24} weight="duotone" className="group-hover:scale-110 transition-transform duration-200" />
+                <Sparkle size={12} weight="fill" className="absolute -top-1.5 -right-1.5 text-gold" />
               </>
             )}
           </div>

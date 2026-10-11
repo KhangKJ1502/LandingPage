@@ -1,12 +1,13 @@
 export const SITE = {
-  name: "Craft Web Studio",
-  shortName: "Craft Studio",
+  name: "Sunflower Marketing LLC",
+  shortName: "Sunflower Marketing",
   tagline: "Giúp cơ sở của bạn được tin tưởng, được tìm thấy và được chọn.",
   subtagline: "Studio chuyên sâu về Quản lý Review 5 sao & Thiết kế Website chuẩn chuyển đổi cho Nail salon, Spa, Nhà hàng và Thẩm mỹ viện.",
-  hotline: "0909 123 456",
-  hotlineHref: "tel:0909123456",
-  email: "hello@craftwebstudio.vn",
-  address: "Quận 1, TP. Hồ Chí Minh",
+  hotline: "+1 (307) 998-1364",
+  hotlineHref: "tel:+13079981364",
+  messengerHref: "https://www.facebook.com/messages/t/61594964864831",
+  email: "hello@sunflowermarketing.com",
+  address: "75 E 3rd St, Ste 7, Sheridan, WY 82801, USA",
 };
 
 export const NAV_LINKS = [
@@ -426,7 +427,7 @@ export const PORTFOLIO_ITEMS = [
 export const TESTIMONIALS = [
   {
     quote:
-      "Trước đây tiệm mình chỉ có khoảng 30 review, khách khen trực tiếp rất nhiều nhưng không ai lên mạng viết. Từ khi Craft Web Studio setup hệ thống QR và tối ưu Maps, chỉ trong 3 tháng tiệm đã có gần 200 review 5 sao. Lượng khách vãng lai và du khách tìm đến tăng rõ rệt!",
+      "Trước đây tiệm mình chỉ có khoảng 30 review, khách khen trực tiếp rất nhiều nhưng không ai lên mạng viết. Từ khi Sunflower Marketing LLC setup hệ thống QR và tối ưu Maps, chỉ trong 3 tháng tiệm đã có gần 200 review 5 sao. Lượng khách vãng lai và du khách tìm đến tăng rõ rệt!",
     author: "Chị Mai Phương",
     role: "Chủ sáng lập",
     business: "Lily Nail & Boutique",
@@ -448,7 +449,7 @@ export const TESTIMONIALS = [
   },
   {
     quote:
-      "Làm phòng khám thẩm mỹ thì chữ 'Tín' là quan trọng nhất. Craft Web Studio đã giúp cơ sở xử lý triệt để các review spam ác ý, đồng thời định hình website chuẩn chỉ. Khách hàng bước vào phòng khám với tâm thế hoàn toàn tin tưởng vào tay nghề bác sĩ.",
+      "Làm phòng khám thẩm mỹ thì chữ 'Tín' là quan trọng nhất. Sunflower Marketing LLC đã giúp cơ sở xử lý triệt để các review spam ác ý, đồng thời định hình website chuẩn chỉ. Khách hàng bước vào phòng khám với tâm thế hoàn toàn tin tưởng vào tay nghề bác sĩ.",
     author: "Bác sĩ Thu Trang",
     role: "Bác sĩ Chuyên khoa & Giám đốc",
     business: "Rosé Beauty Clinic",

@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import { Star, TrendingUp, ChevronLeft, ChevronRight, MapPin } from "lucide-react";
+import { Star, TrendUp, CaretLeft, CaretRight, MapPin } from "@phosphor-icons/react";
 import { useLanguage } from "../context/LanguageContext";
 
 interface StoreItem {
@@ -407,7 +407,7 @@ export default function StoreShowcaseSlider() {
                 {activeStore.name[lang]}
               </h3>
               <div className="flex items-center gap-1.5 text-[12px] text-white/80 font-medium">
-                <MapPin size={12} className="text-amber shrink-0" />
+                <MapPin size={13} weight="fill" className="text-amber shrink-0" />
                 <span>{activeStore.location[lang]}</span>
               </div>
             </div>
@@ -430,7 +430,7 @@ export default function StoreShowcaseSlider() {
               className="pointer-events-auto w-8 h-8 rounded-full bg-black/40 hover:bg-white text-white hover:text-navy backdrop-blur-md flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-90 cursor-pointer border border-white/30 shadow-lg"
               aria-label={lang === "vi" ? "Lướt sang cửa hàng trước" : "Slide to previous store"}
             >
-              <ChevronLeft size={18} />
+              <CaretLeft size={18} weight="bold" />
             </button>
             <button
               onClick={(e) => {
@@ -440,7 +440,7 @@ export default function StoreShowcaseSlider() {
               className="pointer-events-auto w-8 h-8 rounded-full bg-black/40 hover:bg-white text-white hover:text-navy backdrop-blur-md flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-90 cursor-pointer border border-white/30 shadow-lg"
               aria-label={lang === "vi" ? "Lướt sang cửa hàng tiếp theo" : "Slide to next store"}
             >
-              <ChevronRight size={18} />
+              <CaretRight size={18} weight="bold" />
             </button>
           </div>
 
@@ -465,7 +465,7 @@ export default function StoreShowcaseSlider() {
         {/* Floating Badge 1: 4.9★ Google Business Profile (Top-Left) */}
         <div className="absolute -top-5 -left-3 sm:-left-6 bg-white/95 backdrop-blur-xl rounded-[16px] p-3.5 border border-white/80 shadow-[0_12px_35px_-6px_rgba(15,23,42,0.12)] flex items-center gap-3 z-30 ring-1 ring-black/5">
           <div className="w-10 h-10 rounded-[12px] bg-gradient-to-br from-amber/20 to-amber/5 flex items-center justify-center text-amber shrink-0 border border-amber/20">
-            <Star size={20} className="fill-amber text-amber" />
+            <Star size={20} weight="fill" className="text-amber" />
           </div>
           <div>
             <div className="flex items-center gap-1 mb-0.5">
@@ -474,7 +474,7 @@ export default function StoreShowcaseSlider() {
               </span>
               <div className="flex gap-0.5">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={11} className="fill-amber text-amber" />
+                  <Star key={i} size={11} weight="fill" className="text-amber" />
                 ))}
               </div>
             </div>
@@ -487,7 +487,7 @@ export default function StoreShowcaseSlider() {
         {/* Floating Badge 2: Growth Metric Indicator (Bottom-Right) */}
         <div className="absolute -bottom-6 -right-2 sm:-right-4 bg-white/95 backdrop-blur-xl rounded-[16px] px-4 py-3 border border-white/80 shadow-[0_14px_40px_-6px_rgba(15,23,42,0.14)] flex items-center gap-3 z-30 ring-1 ring-black/5">
           <div className="w-9 h-9 rounded-full bg-emerald/10 border border-emerald/20 flex items-center justify-center text-emerald shrink-0">
-            <TrendingUp size={18} />
+            <TrendUp size={18} weight="bold" />
           </div>
           <div>
             <div className="flex items-center gap-1.5">

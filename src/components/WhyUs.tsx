@@ -1,4 +1,4 @@
-import { ShieldCheck, Zap, Users, TrendingUp, Sparkles, CheckCircle2, Award, BarChart3 } from "lucide-react";
+import { ShieldCheck, Lightning, Users, TrendUp, Sparkle, CheckCircle, ChartBar } from "@phosphor-icons/react";
 import { useLanguage } from "../context/LanguageContext";
 import { useReveal } from "../hooks/useReveal";
 
@@ -25,7 +25,7 @@ export default function WhyUs() {
         {/* Section Header */}
         <div className="text-center max-w-[680px] mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-canvas border border-mist text-[12.5px] font-semibold text-blue mb-3.5 shadow-2xs">
-            <Sparkles size={13} className="text-gold" />
+            <Sparkle size={14} weight="fill" className="text-gold" />
             <span>{whyUs.tag}</span>
           </div>
           <h2
@@ -46,7 +46,7 @@ export default function WhyUs() {
           <div className="md:col-span-7 luxury-card rounded-[24px] border border-mist/90 overflow-hidden relative group bg-canvas/40 flex flex-col justify-between">
             <div className="p-7 sm:p-9 z-10">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue/10 text-blue text-[11.5px] font-bold uppercase tracking-wider mb-4">
-                <Users size={13} />
+                <Users size={15} weight="duotone" />
                 <span>{isVi ? "Tâm lý khách hàng cao cấp" : "High-End Customer Psychology"}</span>
               </div>
               <h3
@@ -87,7 +87,7 @@ export default function WhyUs() {
           <div className="md:col-span-5 luxury-card rounded-[24px] border border-mist/90 p-7 sm:p-9 bg-gradient-to-br from-white via-canvas/50 to-canvas/80 flex flex-col justify-between">
             <div>
               <div className="w-11 h-11 rounded-[14px] bg-amber/10 border border-amber/20 flex items-center justify-center text-amber mb-5">
-                <Zap size={22} className="fill-amber/20" />
+                <Lightning size={24} weight="duotone" />
               </div>
               <h3
                 className="text-[20px] sm:text-[23px] font-bold text-navy mb-2.5"
@@ -120,7 +120,7 @@ export default function WhyUs() {
           <div className="md:col-span-5 luxury-card rounded-[24px] border border-mist/90 p-7 sm:p-9 bg-white flex flex-col justify-between">
             <div>
               <div className="w-11 h-11 rounded-[14px] bg-blue/10 border border-blue/20 flex items-center justify-center text-blue mb-5">
-                <ShieldCheck size={22} />
+                <ShieldCheck size={26} weight="duotone" />
               </div>
               <h3
                 className="text-[20px] sm:text-[23px] font-bold text-navy mb-2.5"
@@ -134,7 +134,7 @@ export default function WhyUs() {
             </div>
 
             <div className="flex items-center gap-3 p-3.5 rounded-[14px] bg-canvas border border-mist/80">
-              <BarChart3 size={20} className="text-blue shrink-0" />
+              <ChartBar size={22} weight="duotone" className="text-blue shrink-0" />
               <div className="text-[12.5px] leading-snug">
                 <p className="font-semibold text-navy">{isVi ? "Báo cáo Google Analytics & Maps Live" : "Live Google Analytics & Maps"}</p>
                 <p className="text-muted-light">{isVi ? "Quyền quản trị chính chủ 100%" : "100% full client ownership"}</p>
@@ -146,7 +146,7 @@ export default function WhyUs() {
           <div className="md:col-span-7 luxury-card rounded-[24px] border border-mist/90 p-7 sm:p-9 bg-gradient-to-tr from-canvas/60 via-white to-canvas/30 flex flex-col justify-between">
             <div>
               <div className="w-11 h-11 rounded-[14px] bg-emerald-subtle border border-emerald/20 flex items-center justify-center text-emerald mb-5">
-                <TrendingUp size={22} />
+                <TrendUp size={24} weight="duotone" />
               </div>
               <h3
                 className="text-[20px] sm:text-[24px] font-bold text-navy mb-2.5"
@@ -161,13 +161,13 @@ export default function WhyUs() {
 
             <div className="grid sm:grid-cols-2 gap-3 pt-2">
               <div className="flex items-start gap-2.5 p-3 rounded-[12px] bg-white border border-mist/80">
-                <CheckCircle2 size={16} className="text-emerald shrink-0 mt-0.5" />
+                <CheckCircle size={17} weight="fill" className="text-emerald shrink-0 mt-0.5" />
                 <span className="text-[12.5px] text-navy font-medium">
                   {isVi ? "Bảo trì kỹ thuật & tốc độ trang" : "Technical & speed maintenance"}
                 </span>
               </div>
               <div className="flex items-start gap-2.5 p-3 rounded-[12px] bg-white border border-mist/80">
-                <CheckCircle2 size={16} className="text-emerald shrink-0 mt-0.5" />
+                <CheckCircle size={17} weight="fill" className="text-emerald shrink-0 mt-0.5" />
                 <span className="text-[12.5px] text-navy font-medium">
                   {isVi ? "Giữ vững Top 1-3 Google Maps" : "Maintain Top 1-3 Google Maps"}
                 </span>

@@ -1,4 +1,4 @@
-import { CheckCircle2, Sparkles, Shield, ArrowRight } from "lucide-react";
+import { CheckCircle, Sparkle, ShieldCheck, ArrowRight } from "@phosphor-icons/react";
 import { useLanguage } from "../context/LanguageContext";
 import { useRevealGroup } from "../hooks/useReveal";
 
@@ -16,7 +16,7 @@ export default function Pricing() {
       <div className="max-w-[1200px] mx-auto px-5 md:px-8">
         <div className="text-center max-w-[620px] mx-auto mb-14">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-canvas border border-mist text-[12.5px] font-semibold text-blue mb-3.5 shadow-2xs">
-            <Sparkles size={13} className="text-gold" />
+            <Sparkle size={14} weight="fill" className="text-gold" />
             <span>{pricing.tag}</span>
           </div>
           <h2
@@ -47,7 +47,7 @@ export default function Pricing() {
                 {/* Popular Badge for Growth Elite */}
                 {isHighlight && (
                   <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-amber to-gold text-navy font-bold text-[11px] uppercase tracking-wider px-3.5 py-1 rounded-full shadow-md flex items-center gap-1.5">
-                    <Sparkles size={11} className="fill-navy" />
+                    <Sparkle size={12} weight="fill" className="text-navy" />
                     <span>{pricing.popularBadge}</span>
                   </div>
                 )}
@@ -92,9 +92,10 @@ export default function Pricing() {
                     <ul className="space-y-3" role="list">
                       {plan.features.map((f) => (
                         <li key={f} className="flex items-start gap-2.5">
-                          <CheckCircle2
+                          <CheckCircle
                             size={16}
-                            className={`shrink-0 mt-0.5 ${isHighlight ? "text-emerald" : "text-emerald"}`}
+                            weight="duotone"
+                            className="shrink-0 mt-0.5 text-emerald"
                             aria-hidden="true"
                           />
                           <span className={`text-[13.5px] leading-snug ${isHighlight ? "text-white/90" : "text-navy/90"}`}>
@@ -125,7 +126,7 @@ export default function Pricing() {
                     }`}
                   >
                     <span>{plan.cta}</span>
-                    <ArrowRight size={14} />
+                    <ArrowRight size={15} weight="bold" />
                   </button>
                 </div>
               </article>
@@ -136,7 +137,7 @@ export default function Pricing() {
         {/* Security & Guarantee Note */}
         <div className="mt-12 text-center max-w-[600px] mx-auto">
           <div className="inline-flex items-center gap-2 text-[13px] text-muted-light">
-            <Shield size={14} className="text-emerald" />
+            <ShieldCheck size={16} weight="duotone" className="text-emerald" />
             <span>{pricing.legalNote}</span>
           </div>
         </div>

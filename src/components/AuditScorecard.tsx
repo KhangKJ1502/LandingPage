@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowRight, CheckCircle2, AlertCircle, Info, Sparkles, Building2 } from "lucide-react";
+import { ArrowRight, CheckCircle, WarningCircle, Info, Sparkle, Buildings } from "@phosphor-icons/react";
 import { useLanguage } from "../context/LanguageContext";
 import { useReveal } from "../hooks/useReveal";
 
@@ -22,7 +22,7 @@ export default function AuditScorecard() {
         {/* Section Header */}
         <div className="text-center max-w-[640px] mx-auto mb-12">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-mist shadow-2xs text-[12.5px] font-semibold text-blue mb-3.5">
-            <Sparkles size={13} className="text-gold" />
+            <Sparkle size={14} weight="fill" className="text-gold" />
             <span>{scorecard.tag}</span>
           </div>
           <h2
@@ -52,7 +52,7 @@ export default function AuditScorecard() {
                     : "bg-white text-muted hover:text-navy border border-mist hover:border-slate-border"
                   }`}
               >
-                <Building2 size={14} className={isSelected ? "text-gold" : "text-muted-light"} />
+                <Buildings size={16} weight="duotone" className={isSelected ? "text-gold" : "text-muted-light"} />
                 <span>{ind.name}</span>
               </button>
             );
@@ -160,11 +160,11 @@ export default function AuditScorecard() {
 
                     <div className="flex items-start gap-1.5">
                       {isEmerald ? (
-                        <CheckCircle2 size={13} className="text-emerald shrink-0 mt-0.5" />
+                        <CheckCircle size={15} weight="fill" className="text-emerald shrink-0 mt-0.5" />
                       ) : isAmber ? (
-                        <AlertCircle size={13} className="text-amber shrink-0 mt-0.5" />
+                        <WarningCircle size={15} weight="fill" className="text-amber shrink-0 mt-0.5" />
                       ) : (
-                        <Info size={13} className="text-blue shrink-0 mt-0.5" />
+                        <Info size={15} weight="fill" className="text-blue shrink-0 mt-0.5" />
                       )}
                       <p className="text-[12.5px] text-muted leading-relaxed">
                         <strong className="text-navy font-medium">{metric.status}: </strong>
@@ -179,8 +179,8 @@ export default function AuditScorecard() {
             {/* The Clearest Opportunity Callout */}
             <div className="p-4 sm:p-5 rounded-[14px] bg-blue/5 border border-blue/20 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div className="flex items-start gap-3">
-                <div className="w-8 h-8 rounded-lg bg-blue text-white flex items-center justify-center shrink-0 mt-0.5">
-                  <Sparkles size={16} />
+                <div className="w-8 h-8 rounded-lg bg-blue text-white flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
+                  <Sparkle size={17} weight="fill" />
                 </div>
                 <div>
                   <p className="text-[12px] font-bold uppercase tracking-wider text-blue">
@@ -198,7 +198,7 @@ export default function AuditScorecard() {
                 className="px-5 py-2.5 bg-blue hover:bg-blue-hover text-white text-[13px] font-semibold rounded-[28px] shrink-0 transition-colors flex items-center justify-center gap-1.5 shadow-sm cursor-pointer"
               >
                 <span>{scorecard.ctaButton}</span>
-                <ArrowRight size={13} />
+                <ArrowRight size={14} weight="bold" />
               </button>
             </div>
           </div>
