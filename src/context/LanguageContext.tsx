@@ -61,21 +61,21 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     document.documentElement.lang = lang;
     if (lang === "en") {
-      document.title = "Sunflower Marketing LLC";
+      document.title = "Sunflower Marketing LLC | Digital Marketing for US Businesses";
       const metaDesc = document.querySelector('meta[name="description"]');
       if (metaDesc) {
         metaDesc.setAttribute(
           "content",
-          "Studio specializing in 5-star Google review growth and high-converting flagship websites for nail salons, luxury spas, aesthetic clinics, and restaurants."
+          "Comprehensive Digital Marketing agency for Nail Salons, Spas, Restaurants, and Beauty Salons in the US. Websites, Social Media, Meta & Google Ads, and Local SEO."
         );
       }
     } else {
-      document.title = "Sunflower Marketing LLC";
+      document.title = "Sunflower Marketing LLC | Giải pháp Digital Marketing tại Mỹ";
       const metaDesc = document.querySelector('meta[name="description"]');
       if (metaDesc) {
         metaDesc.setAttribute(
           "content",
-          "Studio chuyên sâu về Quản lý Review 5 sao Google Maps & Thiết kế Website chuẩn chuyển đổi cho Nail salon, Spa, Nhà hàng và Thẩm mỹ viện tại Việt Nam. Giúp cơ sở được tin tưởng và bứt phá doanh thu."
+          "Giải pháp Digital Marketing toàn diện cho tiệm Nail Salon, Spa, Restaurant và Beauty Salon tại Mỹ: Thiết kế Website, Chăm sóc Social Media, Chạy Ads đa kênh và Google Maps."
         );
       }
     }

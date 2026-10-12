@@ -4,7 +4,7 @@ import { useReveal } from "../hooks/useReveal";
 
 export default function ServiceComparison() {
   const ref = useReveal<HTMLDivElement>();
-  const { content } = useLanguage();
+  const { content, openConsultation } = useLanguage();
   const { comparison } = content;
 
   return (
@@ -14,26 +14,22 @@ export default function ServiceComparison() {
       aria-labelledby="comparison-heading"
     >
       <div className="max-w-[1200px] mx-auto px-5 md:px-8">
-        <div className="text-center max-w-[620px] mx-auto mb-14">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-mist text-[12.5px] font-semibold text-blue mb-3.5 shadow-2xs">
-            <Sparkle size={14} weight="fill" className="text-gold" />
-            <span>{comparison.tag}</span>
-          </div>
+        <div className="text-center max-w-[620px] mx-auto mb-10 sm:mb-14">
           <h2
             id="comparison-heading"
-            className="text-[32px] md:text-[42px] font-bold text-navy leading-[1.15] mb-4"
+            className="text-[26px] sm:text-[34px] md:text-[42px] font-bold text-navy leading-[1.15] mb-3 sm:mb-4"
             style={{ fontFamily: "var(--font-display)" }}
           >
             {comparison.heading}
           </h2>
-          <p className="text-[15.5px] text-muted leading-relaxed">
+          <p className="text-[14.5px] sm:text-[15.5px] text-muted leading-relaxed">
             {comparison.subheading}
           </p>
         </div>
 
-        <div ref={ref} className="reveal grid md:grid-cols-2 gap-8 max-w-[1020px] mx-auto">
+        <div ref={ref} className="reveal grid md:grid-cols-2 gap-6 sm:gap-8 max-w-[1020px] mx-auto">
           {/* Column 1: Audit & Tối ưu */}
-          <div className="luxury-card rounded-[20px] p-8 sm:p-10 border border-mist/90 flex flex-col justify-between bg-white">
+          <div className="luxury-card rounded-[20px] p-6 sm:p-8 md:p-10 border border-mist/90 flex flex-col justify-between bg-white">
             <div>
               <div className="flex items-center justify-between gap-3 mb-4">
                 <span className="text-[11px] font-bold uppercase tracking-wider text-blue bg-blue/10 px-3 py-1 rounded-full">
@@ -101,22 +97,18 @@ export default function ServiceComparison() {
             </div>
 
             <div className="pt-8 mt-6 border-t border-mist/80">
-              <a
-                href={comparison.col1.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  document.querySelector(comparison.col1.href)?.scrollIntoView({ behavior: "smooth" });
-                }}
-                className="w-full py-3.5 bg-canvas border border-mist text-navy hover:border-slate-border text-[14px] font-semibold rounded-[32px] transition-all duration-200 flex items-center justify-center gap-2"
+              <button
+                onClick={openConsultation}
+                className="w-full py-3.5 bg-canvas border border-mist text-navy hover:border-slate-border text-[14px] font-semibold rounded-[32px] transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer"
               >
                 <span>{comparison.col1.cta}</span>
                 <ArrowRight size={15} weight="bold" />
-              </a>
+              </button>
             </div>
           </div>
 
           {/* Column 2: Thiết kế & Xây dựng mới */}
-          <div className="luxury-card rounded-[20px] p-8 sm:p-10 border border-blue/30 flex flex-col justify-between bg-white relative">
+          <div className="luxury-card rounded-[20px] p-6 sm:p-8 md:p-10 border border-blue/30 flex flex-col justify-between bg-white relative">
             {/* Top gold badge */}
             <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-navy text-white text-[11px] font-semibold px-4 py-1 rounded-full shadow-md flex items-center gap-1.5">
               <Sparkle size={12} weight="fill" className="text-gold" />
@@ -190,17 +182,13 @@ export default function ServiceComparison() {
             </div>
 
             <div className="pt-8 mt-6 border-t border-mist/80">
-              <a
-                href={comparison.col2.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  document.querySelector(comparison.col2.href)?.scrollIntoView({ behavior: "smooth" });
-                }}
-                className="w-full py-3.5 bg-blue text-white hover:bg-blue-hover text-[14px] font-semibold rounded-[32px] shadow-[0_4px_14px_rgba(37,99,235,0.25)] transition-all duration-200 flex items-center justify-center gap-2"
+              <button
+                onClick={openConsultation}
+                className="w-full py-3.5 bg-blue text-white hover:bg-blue-hover text-[14px] font-semibold rounded-[32px] shadow-[0_4px_14px_rgba(37,99,235,0.25)] transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer"
               >
                 <span>{comparison.col2.cta}</span>
                 <ArrowRight size={15} weight="bold" />
-              </a>
+              </button>
             </div>
           </div>
         </div>
@@ -208,7 +196,7 @@ export default function ServiceComparison() {
         <p className="text-center mt-8 text-[13.5px] text-muted">
           {comparison.bottomQuestion}{" "}
           <button
-            onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
+            onClick={openConsultation}
             className="text-blue font-semibold underline underline-offset-2 hover:text-blue-hover cursor-pointer"
           >
             {comparison.bottomCta}

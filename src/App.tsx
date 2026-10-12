@@ -3,10 +3,8 @@ import Header from "./components/Header";
 import Hero from "./components/Hero";
 import TrustStats from "./components/TrustStats";
 import Services from "./components/Services";
-import AuditScorecard from "./components/AuditScorecard";
 import ServiceComparison from "./components/ServiceComparison";
 import Portfolio from "./components/Portfolio";
-import TestimonialsSlider from "./components/TestimonialsSlider";
 import WhyUs from "./components/WhyUs";
 import Process from "./components/Process";
 import Pricing from "./components/Pricing";
@@ -41,11 +39,9 @@ function PageShell() {
         <TrustStats />
         <Services />
         <Portfolio />
-        <AuditScorecard />
         <ServiceComparison />
         <WhyUs />
         <Process />
-        <TestimonialsSlider />
         <Pricing />
         <ContactForm />
         <FAQ />

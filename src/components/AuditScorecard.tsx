@@ -6,7 +6,7 @@ import { useReveal } from "../hooks/useReveal";
 export default function AuditScorecard() {
   const [selectedIndustry, setSelectedIndustry] = useState<string>("nail");
   const ref = useReveal<HTMLDivElement>();
-  const { content } = useLanguage();
+  const { content, openConsultation } = useLanguage();
   const { scorecard } = content;
 
   const currentData =
@@ -192,9 +192,7 @@ export default function AuditScorecard() {
                 </div>
               </div>
               <button
-                onClick={() =>
-                  document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })
-                }
+                onClick={openConsultation}
                 className="px-5 py-2.5 bg-blue hover:bg-blue-hover text-white text-[13px] font-semibold rounded-[28px] shrink-0 transition-colors flex items-center justify-center gap-1.5 shadow-sm cursor-pointer"
               >
                 <span>{scorecard.ctaButton}</span>

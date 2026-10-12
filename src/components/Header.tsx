@@ -217,7 +217,7 @@ export default function Header() {
             aria-hidden="true"
           />
           <nav
-            className="absolute top-22 left-4 right-4 bg-white/98 backdrop-blur-xl border border-mist/90 rounded-[24px] p-6 flex flex-col gap-2.5 shadow-2xl animate-in fade-in slide-in-from-top-4 duration-300 max-w-[480px] mx-auto"
+            className="absolute top-22 left-4 right-4 bg-white/98 backdrop-blur-xl border border-mist/90 rounded-[24px] p-6 flex flex-col gap-2.5 shadow-2xl animate-in fade-in slide-in-from-top-4 duration-300 max-w-[480px] mx-auto max-h-[calc(100vh-100px)] overflow-y-auto"
             aria-label="Mobile Navigation"
           >
             <div className="flex items-center justify-between pb-3.5 border-b border-mist/80">

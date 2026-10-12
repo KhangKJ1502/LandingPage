@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CaretDown, Sparkle, Question } from "@phosphor-icons/react";
+import { CaretDown, Question } from "@phosphor-icons/react";
 import { useLanguage } from "../context/LanguageContext";
 import { useReveal } from "../hooks/useReveal";
 
@@ -37,18 +37,14 @@ export default function FAQ() {
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Left Column */}
           <div className="lg:col-span-5">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-canvas border border-mist text-[12.5px] font-semibold text-blue mb-3.5 shadow-2xs">
-              <Sparkle size={14} weight="fill" className="text-gold" />
-              <span>{faq.tag}</span>
-            </div>
             <h2
               id="faq-heading"
-              className="text-[32px] md:text-[40px] font-bold text-navy leading-[1.15] mb-4"
+              className="text-[26px] sm:text-[34px] md:text-[40px] font-bold text-navy leading-[1.15] mb-3 sm:mb-4"
               style={{ fontFamily: "var(--font-display)" }}
             >
               {faq.heading}
             </h2>
-            <p className="text-[15.5px] text-muted leading-relaxed mb-6">
+            <p className="text-[14.5px] sm:text-[15.5px] text-muted leading-relaxed mb-6">
               {faq.subheading}
             </p>
             <div className="p-5 bg-canvas rounded-[16px] border border-mist flex items-start gap-3">

@@ -48,7 +48,7 @@ function StatItem({
     <div className="reveal text-center md:text-left flex flex-col items-center md:items-start group">
       <div className="flex items-baseline gap-1 mb-2">
         <p
-          className="text-[44px] lg:text-[52px] font-bold leading-none tracking-tight text-navy group-hover:text-blue transition-colors"
+          className="text-[36px] sm:text-[44px] lg:text-[52px] font-bold leading-none tracking-tight text-navy group-hover:text-blue transition-colors"
           style={{ fontFamily: "var(--font-display)" }}
           aria-label={`${stat.value}${stat.suffix} ${stat.label}`}
         >
@@ -58,7 +58,7 @@ function StatItem({
           </span>
         </p>
       </div>
-      <p className="text-[16px] font-semibold text-navy mb-1.5 flex items-center gap-1.5">
+      <p className="text-[15px] sm:text-[16px] font-semibold text-navy mb-1.5 flex items-center gap-1.5">
         {stat.emerald && <CheckCircle size={16} weight="fill" className="text-emerald shrink-0" />}
         {stat.label}
       </p>
@@ -93,23 +93,20 @@ export default function TrustStats() {
   return (
     <section
       ref={sectionRef}
-      className="py-16 md:py-24 bg-white border-y border-mist/80 relative"
+      className="py-12 sm:py-16 md:py-24 bg-white border-y border-mist/80 relative"
       aria-label={trustStats.heading}
     >
       <div className="max-w-[1200px] mx-auto px-5 md:px-8">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-12 pb-6 border-b border-mist/60">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 sm:gap-4 mb-8 sm:mb-12 pb-5 sm:pb-6 border-b border-mist/60">
           <div>
-            <span className="text-[12px] font-bold uppercase tracking-widest text-blue mb-1 block">
-              {trustStats.sectionTag}
-            </span>
             <h2
-              className="text-[22px] md:text-[26px] font-semibold text-navy"
+              className="text-[20px] sm:text-[22px] md:text-[26px] font-semibold text-navy"
               style={{ fontFamily: "var(--font-display)" }}
             >
               {trustStats.heading}
             </h2>
           </div>
-          <div className="flex items-center gap-2 text-[12.5px] text-muted-light">
+          <div className="flex items-center gap-2 text-[12px] sm:text-[12.5px] text-muted-light">
             <Medal size={17} weight="duotone" className="text-gold" />
             <span>{trustStats.sourceContext}</span>
           </div>
@@ -117,7 +114,7 @@ export default function TrustStats() {
 
         <div
           ref={groupRef}
-          className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-0 md:divide-x md:divide-mist/80"
+          className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0 md:divide-x md:divide-mist/80"
         >
           {trustStats.stats.map((stat, i) => (
             <div key={i} className="md:px-10 first:pl-0 last:pr-0">

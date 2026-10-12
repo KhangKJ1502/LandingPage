@@ -1,11 +1,11 @@
 import { useLanguage } from "../context/LanguageContext";
 import { useRevealGroup } from "../hooks/useReveal";
-import { Sparkle, ArrowRight, MagnifyingGlass, PaintBrush, DeviceMobile, TrendUp } from "@phosphor-icons/react";
+import { ArrowRight, MagnifyingGlass, PaintBrush, DeviceMobile, TrendUp } from "@phosphor-icons/react";
 
 const STEP_ICONS = [MagnifyingGlass, PaintBrush, DeviceMobile, TrendUp];
 const STEP_BADGES = {
-  vi: ["Audit 360°", "Thiết kế độc quyền", "Kích hoạt NFC quầy", "Bứt phá doanh thu"],
-  en: ["360° Audit", "Bespoke UI/UX", "NFC Counter Live", "Revenue Surge"],
+  vi: ["Khảo sát & Tư vấn", "Kế hoạch chi tiết", "Triển khai vận hành", "Báo cáo & Tối ưu"],
+  en: ["Survey & Consult", "Strategic Plan", "Launch & Operate", "Report & Optimize"],
 };
 
 export default function Process() {
@@ -19,23 +19,19 @@ export default function Process() {
   return (
     <section
       id="process"
-      className="py-20 md:py-28 bg-canvas relative overflow-hidden scroll-mt-24"
+      className="py-14 sm:py-20 md:py-28 bg-canvas relative overflow-hidden scroll-mt-24"
       aria-labelledby="process-heading"
     >
       <div className="max-w-[1240px] mx-auto px-5 md:px-8">
-        <div className="max-w-[620px] mb-14">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-mist text-[12.5px] font-semibold text-blue uppercase tracking-widest mb-3.5 shadow-2xs">
-            <Sparkle size={14} weight="fill" className="text-gold" />
-            <span>{process.tag}</span>
-          </div>
+        <div className="max-w-[620px] mb-10 sm:mb-14">
           <h2
             id="process-heading"
-            className="text-[32px] md:text-[44px] font-bold text-navy leading-[1.15] mb-3.5"
+            className="text-[26px] sm:text-[34px] md:text-[44px] font-bold text-navy leading-[1.15] mb-3 sm:mb-3.5"
             style={{ fontFamily: "var(--font-display)" }}
           >
             {process.heading}
           </h2>
-          <p className="text-[16px] text-muted leading-relaxed">
+          <p className="text-[14.5px] sm:text-[16px] text-muted leading-relaxed">
             {process.subheading}
           </p>
         </div>
@@ -108,8 +104,14 @@ export default function Process() {
             </p>
           </div>
           <button
-            onClick={() => document.querySelector("#audit")?.scrollIntoView({ behavior: "smooth" })}
-            className="px-6 py-3 bg-blue hover:bg-blue-hover text-white text-[13.5px] font-semibold rounded-[28px] shrink-0 transition-colors flex items-center gap-2 cursor-pointer shadow-sm"
+            onClick={() => {
+              if (typeof window !== "undefined") {
+                window.dispatchEvent(
+                  new CustomEvent("open-consultation-modal", { detail: { service: "all" } })
+                );
+              }
+            }}
+            className="w-full sm:w-auto px-6 py-3.5 sm:py-3 bg-blue hover:bg-blue-hover text-white text-[13.5px] font-semibold rounded-[28px] shrink-0 transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-sm"
           >
             <span>{process.calloutButton}</span>
             <ArrowRight size={15} weight="bold" />

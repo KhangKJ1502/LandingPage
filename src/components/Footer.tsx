@@ -3,7 +3,7 @@ import { useLanguage } from "../context/LanguageContext";
 import LanguageToggle from "./LanguageToggle";
 
 export default function Footer() {
-  const { content } = useLanguage();
+  const { content, openConsultation } = useLanguage();
   const { site, nav, footer } = content;
 
   const scrollTo = (href: string) => {
@@ -24,18 +24,20 @@ export default function Footer() {
   };
 
   const servicesList = [
-    "5-Star Google Review Growth & Shield",
-    "Google Maps Local Pack SEO",
-    "Conversion-Centric Website Design",
-    "Frictionless Automated Booking Engine",
-    "Reputation Defense & Negative Review Crisis Control",
+    "Social Media Management",
+    "Facebook & Instagram Ads",
+    "Google Ads (Search & Maps)",
+    "Thiết Kế Website Chuẩn Chuyển Đổi",
+    "SEO & Local SEO Google Maps",
+    "Google Maps & Quản Lý Đánh Giá",
+    "Social + Ads Combo",
   ];
 
   const industriesList = [
-    "Nail Salon & Boutique",
-    "Spa, Onsen & Wellness",
-    "Aesthetic Clinic & Dermatology",
-    "Hospitality & Fine Dining",
+    "Nail Salon",
+    "Spa & Wellness",
+    "Restaurant",
+    "Beauty Salon",
   ];
 
   return (
@@ -153,7 +155,7 @@ export default function Footer() {
             </div>
 
             <button
-              onClick={() => scrollTo("#audit")}
+              onClick={openConsultation}
               className="w-full py-3 bg-blue hover:bg-blue-hover text-white text-[13.5px] font-semibold rounded-[32px] transition-colors shadow-md cursor-pointer mb-4"
             >
               {footer.auditButton}
@@ -168,12 +170,12 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-[12.5px] text-white/50">
+        <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+          <p className="text-[12px] sm:text-[12.5px] text-white/50">
             © 2026 {site.name}. {footer.copyright}
           </p>
 
-          <div className="flex items-center gap-5 text-[12.5px] text-white/50">
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[12px] sm:text-[12.5px] text-white/50">
             <a href="#home" className="hover:text-white/80 transition-colors">
               {footer.privacyLink}
             </a>

@@ -130,12 +130,12 @@ export default function ConsultationModal() {
         aria-hidden="true"
       />
 
-      {/* Compact, No-Scroll Modal Content */}
-      <div className="relative w-full max-w-[640px] bg-white rounded-[22px] shadow-[0_25px_60px_-15px_rgba(15,23,42,0.35)] border border-mist p-5 sm:p-7 z-10 animate-in zoom-in-95 duration-200 my-auto">
+      {/* Compact, Safe Scroll Modal Content */}
+      <div className="relative w-full max-w-[640px] bg-white rounded-[20px] sm:rounded-[22px] shadow-[0_25px_60px_-15px_rgba(15,23,42,0.35)] border border-mist p-4 sm:p-7 z-10 animate-in zoom-in-95 duration-200 my-auto max-h-[92vh] overflow-y-auto">
         {/* Close Button */}
         <button
           onClick={closeConsultation}
-          className="absolute top-4.5 right-4.5 w-8 h-8 rounded-full bg-canvas hover:bg-light-slate text-muted hover:text-navy flex items-center justify-center transition-colors cursor-pointer border border-mist focus-visible:rounded-full"
+          className="absolute top-3.5 right-3.5 sm:top-4.5 sm:right-4.5 w-8 h-8 rounded-full bg-canvas hover:bg-light-slate text-muted hover:text-navy flex items-center justify-center transition-colors cursor-pointer border border-mist focus-visible:rounded-full z-20"
           aria-label="Close dialog"
         >
           <X size={16} weight="bold" />
@@ -205,23 +205,18 @@ export default function ConsultationModal() {
                 <span className="text-[12px] font-semibold text-navy block mb-1.5">
                   {contact.serviceLegend}
                 </span>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 p-1.5 bg-canvas rounded-[12px] border border-mist/80" role="group">
+                <select
+                  id="modal-service"
+                  value={form.service}
+                  onChange={(e) => set("service", e.target.value)}
+                  className="w-full px-3 py-2 rounded-[8px] border border-mist bg-canvas text-navy text-[13px] outline-none focus:border-blue focus:bg-white transition-colors cursor-pointer font-medium"
+                >
                   {contact.servicesOptions.map((opt) => (
-                    <button
-                      type="button"
-                      key={opt.value}
-                      aria-pressed={form.service === opt.value}
-                      onClick={() => set("service", opt.value)}
-                      className={`min-h-[40px] px-3 py-2 rounded-[9px] text-[12px] font-semibold text-center flex items-center justify-center leading-snug transition-all cursor-pointer ${
-                        form.service === opt.value
-                          ? "bg-navy text-white shadow-xs"
-                          : "text-muted hover:text-navy hover:bg-white/80"
-                      }`}
-                    >
-                      <span>{opt.label}</span>
-                    </button>
+                    <option key={opt.value} value={opt.value}>
+                      {opt.label}
+                    </option>
                   ))}
-                </div>
+                </select>
               </div>
 
               {/* 2. Row: Name & Phone */}

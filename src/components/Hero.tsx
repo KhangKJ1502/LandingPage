@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { ArrowRight, CheckCircle, WarningCircle, Star, ShieldCheck, MapPin, Sparkle, TrendUp } from "@phosphor-icons/react";
+import { ArrowRight, CheckCircle, WarningCircle, ShieldCheck, MapPin, Sparkle, TrendUp } from "@phosphor-icons/react";
 import { useLanguage } from "../context/LanguageContext";
 import { PARTNER_BRANDS } from "../constants";
 import StoreShowcaseSlider from "./StoreShowcaseSlider";
@@ -67,7 +67,7 @@ export default function Hero() {
 
   return (
     <section
-      className="relative pt-36 pb-20 md:pt-44 md:pb-28 overflow-hidden bg-gradient-to-b from-canvas via-white to-canvas"
+      className="relative pt-28 pb-14 sm:pt-36 sm:pb-20 md:pt-44 md:pb-28 overflow-hidden bg-gradient-to-b from-canvas via-white to-canvas"
       aria-labelledby="hero-heading"
       id="home"
     >
@@ -84,17 +84,13 @@ export default function Hero() {
       <div className="max-w-[1200px] mx-auto px-5 md:px-8">
         <div
           ref={heroRef}
-          className="reveal grid lg:grid-cols-12 gap-12 lg:gap-14 items-center"
+          className="reveal grid lg:grid-cols-12 gap-10 lg:gap-14 items-center"
         >
           {/* Left Column: Editorial Statement & Inspection Bar */}
           <div className="lg:col-span-7 flex flex-col items-start">
             {/* Prestige Verified Badge */}
-            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 bg-white/90 border border-mist rounded-[40px] shadow-[0_2px_8px_-2px_rgba(0,0,0,0.04)] text-[12.5px] text-navy font-medium mb-6">
-              <div className="flex items-center gap-0.5">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={13} weight="fill" className="text-amber" aria-hidden="true" />
-                ))}
-              </div>
+            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 bg-white/90 border border-mist rounded-[40px] shadow-[0_2px_8px_-2px_rgba(0,0,0,0.04)] text-[12px] sm:text-[12.5px] text-navy font-medium mb-5 sm:mb-6">
+              <Sparkle size={15} weight="fill" className="text-gold shrink-0" aria-hidden="true" />
               <span className="w-1 h-1 rounded-full bg-slate-border" />
               <span className="text-muted">{hero.trustBadge}</span>
             </div>
@@ -102,7 +98,7 @@ export default function Hero() {
             {/* Main Headline */}
             <h1
               id="hero-heading"
-              className="text-[34px] sm:text-[46px] lg:text-[54px] font-bold text-navy leading-[1.12] tracking-tight mb-6"
+              className="text-[28px] xs:text-[33px] sm:text-[44px] lg:text-[54px] font-bold text-navy leading-[1.15] sm:leading-[1.12] tracking-tight mb-5 sm:mb-6"
               style={{ fontFamily: "var(--font-display)" }}
             >
               {hero.headlinePart1}{" "}
@@ -116,28 +112,28 @@ export default function Hero() {
             </h1>
 
             {/* Sub-heading */}
-            <p className="text-[16px] sm:text-[17.5px] text-muted leading-relaxed mb-8 max-w-[560px]">
+            <p className="text-[15px] sm:text-[17.5px] text-muted leading-relaxed mb-6 sm:mb-8 max-w-[560px]">
               {hero.description}
             </p>
 
             {/* URL Inspection Bar */}
             <div id="audit" className="w-full max-w-[580px] mb-8" aria-label="Website and Maps URL audit">
               {state === "success" ? (
-                <div className="luxury-card rounded-[16px] p-6 border-l-4 border-l-emerald animate-in fade-in zoom-in-95 duration-300">
-                  <div className="flex items-start gap-4">
+                <div className="luxury-card rounded-[18px] p-5 sm:p-6 border-l-4 border-l-emerald animate-in fade-in zoom-in-95 duration-300">
+                  <div className="flex items-start gap-3.5 sm:gap-4">
                     <div className="w-10 h-10 rounded-full bg-emerald-subtle flex items-center justify-center shrink-0">
                       <CheckCircle size={24} weight="duotone" className="text-emerald" aria-hidden="true" />
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center justify-between">
-                        <p className="font-semibold text-navy text-[15px]">
+                        <p className="font-semibold text-navy text-[14.5px] sm:text-[15px]">
                           {hero.successTitle}
                         </p>
                         <span className="text-[11px] font-semibold text-emerald bg-emerald/10 px-2 py-0.5 rounded-full">
                           {hero.successStatus}
                         </span>
                       </div>
-                      <p className="text-[13.5px] text-muted mt-1 leading-relaxed">
+                      <p className="text-[13px] sm:text-[13.5px] text-muted mt-1 leading-relaxed">
                         {hero.successDesc}
                       </p>
                       <div className="mt-4 pt-3 border-t border-mist/80 flex items-center justify-between">
@@ -148,7 +144,7 @@ export default function Hero() {
                           {hero.resetButton}
                         </button>
                         <a
-                          href="#audit-scorecard"
+                          href="#comparison"
                           className="text-[12.5px] font-semibold text-navy hover:text-blue transition-colors flex items-center gap-1"
                         >
                           {hero.viewScorecardLink}
@@ -159,9 +155,9 @@ export default function Hero() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} noValidate aria-label="URL Inspection Form">
-                  <div className="relative p-2 bg-white rounded-[36px] border border-mist shadow-[0_4px_24px_-4px_rgba(15,23,42,0.06)] hover:border-slate-border focus-within:border-blue transition-all duration-300">
+                  <div className="relative p-1.5 sm:p-2 bg-white rounded-[22px] sm:rounded-[36px] border border-mist shadow-[0_4px_24px_-4px_rgba(15,23,42,0.06)] hover:border-slate-border focus-within:border-blue transition-all duration-300">
                     <div className="flex flex-col sm:flex-row gap-2">
-                      <div className="relative flex-1 flex items-center pl-4">
+                      <div className="relative flex-1 flex items-center pl-3 sm:pl-4 pr-3">
                         <MapPin size={18} weight="duotone" className="text-muted-light shrink-0 mr-2" aria-hidden="true" />
                         <label htmlFor="audit-url" className="sr-only">
                           Google Maps or Website URL
@@ -176,7 +172,7 @@ export default function Hero() {
                             if (fieldError) setFieldError("");
                           }}
                           placeholder={hero.inputPlaceholder}
-                          className="w-full bg-transparent py-2.5 text-[14.5px] text-navy placeholder:text-muted/70 outline-none min-w-0 font-normal"
+                          className="w-full bg-transparent py-2.5 text-[14px] sm:text-[14.5px] text-navy placeholder:text-muted/70 outline-none min-w-0 font-normal"
                           disabled={state === "loading"}
                           aria-describedby={fieldError ? "audit-error" : undefined}
                           aria-invalid={!!fieldError}
@@ -186,7 +182,7 @@ export default function Hero() {
                       <button
                         type="submit"
                         disabled={state === "loading"}
-                        className="px-6 py-3 bg-blue hover:bg-blue-hover text-white text-[14px] font-semibold rounded-[32px] shadow-sm transition-all duration-200 shrink-0 flex items-center justify-center gap-2 disabled:opacity-80 cursor-pointer"
+                        className="w-full sm:w-auto px-6 py-3.5 sm:py-3 bg-blue hover:bg-blue-hover text-white text-[14px] font-semibold rounded-[32px] shadow-sm transition-all duration-200 shrink-0 flex items-center justify-center gap-2 disabled:opacity-80 cursor-pointer"
                       >
                         {state === "loading" ? (
                           <>
@@ -210,14 +206,14 @@ export default function Hero() {
                     <p
                       id="audit-error"
                       role="alert"
-                      className="flex items-center gap-1.5 mt-2.5 ml-4 text-[13px] text-navy font-medium"
+                      className="flex items-center gap-1.5 mt-2.5 ml-3 sm:ml-4 text-[13px] text-navy font-medium"
                     >
                       <WarningCircle size={15} weight="duotone" className="text-amber shrink-0" aria-hidden="true" />
                       <span>{fieldError}</span>
                     </p>
                   )}
 
-                  <div className="flex items-center gap-4 mt-3 ml-4 text-[12px] text-muted-light">
+                  <div className="flex flex-wrap items-center gap-x-3.5 gap-y-1.5 mt-3 ml-2 sm:ml-4 text-[11.5px] sm:text-[12px] text-muted-light">
                     <span className="flex items-center gap-1.5">
                       <ShieldCheck size={16} weight="duotone" className="text-emerald" />
                       {hero.freeAuditBadge}
@@ -285,11 +281,10 @@ export default function Hero() {
                       </span>
                     </div>
 
-                    {/* Google Maps Star Rating pill */}
-                    <div className="absolute bottom-2 left-2.5 flex items-center gap-1 bg-navy/85 backdrop-blur-md px-2 py-0.5 rounded-full text-white text-[11px] font-semibold border border-white/10">
-                      <Star size={11} className="fill-amber text-amber" />
-                      <span>{brand.rating}</span>
-                      <span className="text-white/70 text-[10px]">({brand.reviews})</span>
+                    {/* Google Maps Location pill */}
+                    <div className="absolute bottom-2 left-2.5 flex items-center gap-1 bg-navy/85 backdrop-blur-md px-2.5 py-0.5 rounded-full text-white text-[10.5px] font-semibold border border-white/10">
+                      <MapPin size={11} className="text-white shrink-0" />
+                      <span>{brand.location}</span>
                     </div>
                   </div>
 
@@ -298,12 +293,8 @@ export default function Hero() {
                     <h4 className="text-[13px] font-bold text-navy leading-tight truncate group-hover:text-blue transition-colors">
                       {brand.name}
                     </h4>
-                    <div className="flex items-center justify-between text-[11px] text-muted-light mt-1">
-                      <span className="flex items-center gap-1 truncate">
-                        <MapPin size={11} className="text-muted-light shrink-0" />
-                        <span className="truncate">{brand.location}</span>
-                      </span>
-                      <span className="text-emerald font-semibold shrink-0 ml-1">Top 1 Maps</span>
+                    <div className="flex items-center justify-between text-[11.5px] text-muted-light mt-1">
+                      <span className="text-blue font-semibold truncate">{brand.service}</span>
                     </div>
                   </div>
                 </div>

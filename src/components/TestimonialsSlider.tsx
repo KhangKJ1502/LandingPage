@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import { Star, CaretLeft, CaretRight, Quotes, Sparkle, CheckCircle } from "@phosphor-icons/react";
+import { CaretLeft, CaretRight, Quotes, Sparkle, CheckCircle } from "@phosphor-icons/react";
 import { useLanguage } from "../context/LanguageContext";
 import { useReveal } from "../hooks/useReveal";
 
@@ -115,13 +115,11 @@ export default function TestimonialsSlider() {
                 <Quotes size={24} weight="duotone" />
               </div>
 
-              <div className="flex items-center gap-1.5 bg-canvas px-3.5 py-1.5 rounded-full border border-mist">
-                <div className="flex gap-0.5">
-                  {[...Array(item.stars)].map((_, i) => (
-                    <Star key={i} size={14} weight="fill" className="text-amber" />
-                  ))}
-                </div>
-                <span className="text-[12px] font-bold text-navy ml-1">5.0 / 5.0</span>
+              <div className="flex items-center gap-2 bg-canvas px-3.5 py-1.5 rounded-full border border-mist shadow-2xs">
+                <CheckCircle size={15} weight="fill" className="text-emerald" />
+                <span className="text-[12px] font-semibold text-navy">
+                  {testimonials.verifiedBadge}
+                </span>
               </div>
             </div>
 

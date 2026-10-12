@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useLanguage } from "../context/LanguageContext";
-import { Star, TrendUp, Sparkle, MapPin, ArrowRight, CaretLeft, CaretRight } from "@phosphor-icons/react";
+import { CheckCircle, MapPin, ArrowRight, CaretLeft, CaretRight } from "@phosphor-icons/react";
 
 export default function Portfolio() {
   const [activeCategory, setActiveCategory] = useState<string>("all");
@@ -15,15 +15,15 @@ export default function Portfolio() {
   const startX = useRef(0);
   const startScrollLeft = useRef(0);
 
-  const { content, lang } = useLanguage();
+  const { content, lang, openConsultation } = useLanguage();
   const { portfolio } = content;
 
   const categories = [
     { key: "all", label: portfolio.allCategory },
     { key: "Nail Salon", label: "Nail Salon" },
     { key: "Spa & Wellness", label: "Spa & Wellness" },
-    { key: "restaurant", label: lang === "vi" ? "Nhà hàng" : "Restaurant" },
-    { key: "clinic", label: lang === "vi" ? "Thẩm mỹ viện" : "Aesthetic Clinic" },
+    { key: "restaurant", label: "Restaurant" },
+    { key: "beauty", label: "Beauty Salon" },
   ];
 
   const filteredItems =
@@ -32,8 +32,8 @@ export default function Portfolio() {
       : portfolio.items.filter((item) => {
           if (activeCategory === "Nail Salon") return item.category.toLowerCase().includes("nail");
           if (activeCategory === "Spa & Wellness") return item.category.toLowerCase().includes("spa");
-          if (activeCategory === "restaurant") return item.category.toLowerCase().includes("nhà hàng") || item.category.toLowerCase().includes("restaurant") || item.category.toLowerCase().includes("dining");
-          if (activeCategory === "clinic") return item.category.toLowerCase().includes("thẩm mỹ") || item.category.toLowerCase().includes("clinic");
+          if (activeCategory === "restaurant") return item.category.toLowerCase().includes("restaurant") || item.category.toLowerCase().includes("nhà hàng") || item.category.toLowerCase().includes("bistro");
+          if (activeCategory === "beauty") return item.category.toLowerCase().includes("beauty") || item.category.toLowerCase().includes("thẩm mỹ");
           return item.category.toLowerCase().includes(activeCategory.toLowerCase());
         });
 
@@ -105,10 +105,6 @@ export default function Portfolio() {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
           <div className="max-w-[620px]">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-canvas border border-mist text-[12.5px] font-semibold text-blue mb-3.5">
-              <Sparkle size={14} weight="fill" className="text-gold" />
-              <span>{portfolio.tag}</span>
-            </div>
             <h2
               id="portfolio-heading"
               className="text-[32px] md:text-[42px] font-bold text-navy leading-[1.15] mb-3"
@@ -193,7 +189,7 @@ export default function Portfolio() {
             return (
               <article
                 key={item.name}
-                className="snap-start shrink-0 w-[330px] sm:w-[380px] md:w-[420px] luxury-card rounded-[22px] border border-mist/90 overflow-hidden flex flex-col justify-between group bg-white shadow-[0_10px_30px_-8px_rgba(15,23,42,0.08)] hover:shadow-[0_16px_40px_-8px_rgba(15,23,42,0.12)] transition-shadow duration-300"
+                className="snap-start shrink-0 w-[84vw] max-w-[340px] sm:w-[380px] md:w-[420px] luxury-card rounded-[22px] border border-mist/90 overflow-hidden flex flex-col justify-between group bg-white shadow-[0_10px_30px_-8px_rgba(15,23,42,0.08)] hover:shadow-[0_16px_40px_-8px_rgba(15,23,42,0.12)] transition-shadow duration-300"
               >
                 <div>
                   {/* Image Container with Floating Badges */}
@@ -208,41 +204,44 @@ export default function Portfolio() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-transparent to-transparent pointer-events-none" />
 
-                    {/* Category pill */}
-                    <div className="absolute top-4 left-4 z-10">
-                      <span className="inline-block text-[11px] font-bold uppercase tracking-wider text-navy bg-white/95 backdrop-blur-md px-3 py-1 rounded-full shadow-xs border border-white/60">
+                    {/* Top Bar Floating Badges: Category & Toggle */}
+                    <div className="absolute top-3 left-3 right-3 sm:top-3.5 sm:left-3.5 sm:right-3.5 z-10 flex items-center justify-between gap-1.5 sm:gap-2 pointer-events-auto">
+                      {/* Category pill */}
+                      <span className="inline-block text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-navy bg-white/95 backdrop-blur-md px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full shadow-xs border border-white/60 shrink-0">
                         {item.category}
                       </span>
-                    </div>
 
-                    {/* Interactive Before / After Toggle Switch */}
-                    <div className="absolute top-4 right-4 z-10 bg-navy/90 backdrop-blur-md rounded-full p-1 flex items-center border border-white/20 shadow-md">
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          toggleView(item.name);
-                        }}
-                        className={`px-3 py-1 text-[11px] font-bold rounded-full transition-all duration-200 cursor-pointer ${
-                          !isBefore
-                            ? "bg-emerald text-white shadow-xs"
-                            : "text-white/70 hover:text-white"
-                        }`}
-                      >
-                        {portfolio.afterLabel}
-                      </button>
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          toggleView(item.name);
-                        }}
-                        className={`px-3 py-1 text-[11px] font-bold rounded-full transition-all duration-200 cursor-pointer ${
-                          isBefore
-                            ? "bg-amber text-navy font-bold shadow-xs"
-                            : "text-white/70 hover:text-white"
-                        }`}
-                      >
-                        {portfolio.beforeLabel}
-                      </button>
+                      {/* Interactive Before / After Toggle Switch */}
+                      <div className="bg-navy/90 backdrop-blur-md rounded-full p-0.5 flex items-center border border-white/20 shadow-md shrink-0">
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            toggleView(item.name);
+                          }}
+                          className={`px-2 sm:px-2.5 py-0.5 sm:py-1 text-[10px] sm:text-[11px] font-bold rounded-full transition-all duration-200 cursor-pointer ${
+                            !isBefore
+                              ? "bg-emerald text-white shadow-xs"
+                              : "text-white/70 hover:text-white"
+                          }`}
+                        >
+                          {portfolio.afterLabel}
+                        </button>
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            toggleView(item.name);
+                          }}
+                          className={`px-2 sm:px-2.5 py-0.5 sm:py-1 text-[10px] sm:text-[11px] font-bold rounded-full transition-all duration-200 cursor-pointer ${
+                            isBefore
+                              ? "bg-amber text-navy font-bold shadow-xs"
+                              : "text-white/70 hover:text-white"
+                          }`}
+                        >
+                          {portfolio.beforeLabel}
+                        </button>
+                      </div>
                     </div>
 
                     {/* Bottom Image Info */}
@@ -293,7 +292,7 @@ export default function Portfolio() {
                             {portfolio.afterStateTitle}
                           </span>
                           <div className="flex items-center gap-1">
-                            <Star size={13} weight="fill" className="text-amber" />
+                            <CheckCircle size={14} weight="fill" className="text-emerald" />
                             <span className="text-[12px] font-bold text-navy">
                               {item.metrics.ratingAfter}
                             </span>
@@ -305,30 +304,29 @@ export default function Portfolio() {
                       </div>
                     )}
 
-                    {/* Metric Highlights Grid */}
-                    <div className="grid grid-cols-3 gap-1.5 sm:gap-2">
-                      <div className="p-2 sm:p-2.5 bg-canvas rounded-[10px] border border-mist/70 text-center flex flex-col justify-center min-h-[58px] overflow-hidden">
-                        <p className="text-[9.5px] sm:text-[10px] uppercase font-bold text-muted-light tracking-wider truncate mb-0.5">
+                    {/* Deliverable Highlights Grid */}
+                    <div className="grid grid-cols-3 gap-1 sm:gap-2">
+                      <div className="p-1.5 sm:p-2.5 bg-canvas rounded-[10px] border border-mist/70 text-center flex flex-col justify-center min-h-[52px] sm:min-h-[58px] overflow-hidden">
+                        <p className="text-[9px] sm:text-[10px] uppercase font-bold text-muted-light tracking-wider truncate mb-0.5">
                           {portfolio.ratingMetric}
                         </p>
-                        <p className="text-[11.5px] sm:text-[12.5px] font-extrabold text-navy leading-snug">
-                          {item.metrics.ratingBefore} → {item.metrics.ratingAfter}
+                        <p className="text-[10.5px] sm:text-[12px] font-bold text-navy leading-snug truncate" title={item.metrics.ratingAfter}>
+                          {item.metrics.ratingAfter}
                         </p>
                       </div>
-                      <div className="p-2 sm:p-2.5 bg-canvas rounded-[10px] border border-mist/70 text-center flex flex-col justify-center min-h-[58px] overflow-hidden">
-                        <p className="text-[9.5px] sm:text-[10px] uppercase font-bold text-muted-light tracking-wider truncate mb-0.5">
+                      <div className="p-1.5 sm:p-2.5 bg-canvas rounded-[10px] border border-mist/70 text-center flex flex-col justify-center min-h-[52px] sm:min-h-[58px] overflow-hidden">
+                        <p className="text-[9px] sm:text-[10px] uppercase font-bold text-muted-light tracking-wider truncate mb-0.5">
                           {portfolio.newReviewsMetric}
                         </p>
-                        <p className="text-[11.5px] sm:text-[12.5px] font-extrabold text-emerald leading-snug flex items-center justify-center gap-0.5">
-                          <TrendUp size={12} weight="bold" className="shrink-0" />
-                          <span>{item.metrics.reviewGrowth}</span>
+                        <p className="text-[10.5px] sm:text-[12px] font-bold text-emerald leading-snug truncate" title={item.metrics.reviewGrowth}>
+                          {item.metrics.reviewGrowth}
                         </p>
                       </div>
-                      <div className="p-2 sm:p-2.5 bg-canvas rounded-[10px] border border-mist/70 text-center flex flex-col justify-center min-h-[58px] overflow-hidden">
-                        <p className="text-[9.5px] sm:text-[10px] uppercase font-bold text-muted-light tracking-wider truncate mb-0.5">
+                      <div className="p-1.5 sm:p-2.5 bg-canvas rounded-[10px] border border-mist/70 text-center flex flex-col justify-center min-h-[52px] sm:min-h-[58px] overflow-hidden">
+                        <p className="text-[9px] sm:text-[10px] uppercase font-bold text-muted-light tracking-wider truncate mb-0.5">
                           {portfolio.conversionMetric}
                         </p>
-                        <p className="text-[11.5px] sm:text-[12.5px] font-extrabold text-blue leading-snug">
+                        <p className="text-[10.5px] sm:text-[12px] font-bold text-blue leading-snug truncate" title={item.metrics.leadGrowth}>
                           {item.metrics.leadGrowth}
                         </p>
                       </div>
@@ -338,7 +336,7 @@ export default function Portfolio() {
 
                 <div className="px-5 pb-5 pt-0">
                   <button
-                    onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
+                    onClick={openConsultation}
                     className="w-full py-2.5 bg-canvas hover:bg-navy hover:text-white border border-mist text-navy text-[12.5px] font-semibold rounded-[32px] transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer group/btn"
                   >
                     <span>{portfolio.ctaButton}</span>

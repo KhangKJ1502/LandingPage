@@ -64,7 +64,7 @@ export default function FloatingConsultation() {
   return (
     <div
       ref={containerRef}
-      className="fixed bottom-6 right-5 sm:right-6 z-40 flex flex-col items-end select-none pointer-events-none"
+      className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 flex flex-col items-end select-none pointer-events-none"
     >
       {/* 
         Expanded Options Menu 
@@ -77,7 +77,7 @@ export default function FloatingConsultation() {
           onMouseLeave={handleMouseLeave}
           className="mb-3 pointer-events-auto animate-in fade-in zoom-in-95 duration-200 origin-bottom-right"
         >
-          <div className="w-[280px] sm:w-[310px] bg-white/95 backdrop-blur-md rounded-[20px] p-2.5 border border-mist shadow-[0_16px_40px_-8px_rgba(15,23,42,0.18)] flex flex-col gap-1.5">
+          <div className="w-[calc(100vw-32px)] max-w-[290px] sm:w-[310px] bg-white/95 backdrop-blur-md rounded-[20px] p-2.5 border border-mist shadow-[0_16px_40px_-8px_rgba(15,23,42,0.18)] flex flex-col gap-1.5">
             {/* Header of Popup */}
             <div className="px-3 py-1.5 flex items-center justify-between border-b border-mist/70 text-[11px] font-bold text-muted-light uppercase tracking-wider">
               <span>{isVi ? "Kênh hỗ trợ trực tuyến" : "Live Support Channels"}</span>
@@ -150,12 +150,12 @@ export default function FloatingConsultation() {
               <div className="flex-1 min-w-0">
                 <div className="flex items-center justify-between">
                   <p className="text-[13.5px] font-bold text-navy group-hover:text-white transition-colors">
-                    {isVi ? "Thẩm định Audit 0đ" : "Free Audit Report"}
+                    {isVi ? "Nhận tư vấn miễn phí" : "Get Free Consultation"}
                   </p>
                   <Sparkle size={14} weight="fill" className="text-gold shrink-0" />
                 </div>
                 <p className="text-[11.5px] text-muted group-hover:text-white/80 transition-colors truncate">
-                  {isVi ? "Báo cáo phân tích chuyên sâu" : "Full scorecard report in 24h"}
+                  {isVi ? "Đăng ký tư vấn trực tiếp 1-1" : "Book a 1-on-1 strategy call"}
                 </p>
               </div>
             </button>
@@ -164,12 +164,12 @@ export default function FloatingConsultation() {
       )}
 
       {/* Action Buttons Row: [Back To Top] + [Main Contact Speed Dial Trigger] */}
-      <div className="flex items-center gap-2.5 pointer-events-auto">
+      <div className="flex items-center gap-2 sm:gap-2.5 pointer-events-auto">
         {/* Back to Top Button (revealed on scroll) */}
         <button
           type="button"
           onClick={scrollToTop}
-          className={`group relative flex items-center justify-center w-12 h-12 rounded-full bg-white/95 backdrop-blur-md text-navy hover:text-blue hover:bg-white border border-mist shadow-[0_6px_20px_rgba(15,23,42,0.14)] hover:shadow-[0_8px_25px_rgba(37,99,235,0.25)] hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer ${
+          className={`group relative flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white/95 backdrop-blur-md text-navy hover:text-blue hover:bg-white border border-mist shadow-[0_6px_20px_rgba(15,23,42,0.14)] hover:shadow-[0_8px_25px_rgba(37,99,235,0.25)] hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer ${
             showScrollTop
               ? "opacity-100 translate-y-0 pointer-events-auto"
               : "opacity-0 translate-y-4 pointer-events-none"
@@ -177,7 +177,7 @@ export default function FloatingConsultation() {
           aria-label={isVi ? "Cuộn về đầu trang" : "Scroll to top"}
           title={isVi ? "Về đầu trang" : "Back to top"}
         >
-          <ArrowUp size={20} weight="bold" className="group-hover:-translate-y-0.5 transition-transform duration-200" />
+          <ArrowUp size={18} weight="bold" className="group-hover:-translate-y-0.5 transition-transform duration-200" />
           
           {/* Subtle hover tooltip */}
           <span className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-0.5 bg-navy/90 text-white text-[11px] font-medium rounded-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none shadow-sm backdrop-blur-xs">
@@ -190,7 +190,7 @@ export default function FloatingConsultation() {
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           onClick={() => setIsOpen((prev) => !prev)}
-          className={`group relative flex items-center justify-center w-14 h-14 rounded-full shadow-[0_8px_28px_rgba(15,23,42,0.25)] hover:shadow-[0_12px_32px_rgba(37,99,235,0.4)] hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer border-2 border-white ${
+          className={`group relative flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full shadow-[0_8px_28px_rgba(15,23,42,0.25)] hover:shadow-[0_12px_32px_rgba(37,99,235,0.4)] hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer border-2 border-white ${
             isOpen
               ? "bg-navy text-white"
               : "bg-gradient-to-br from-blue via-blue to-navy text-white"

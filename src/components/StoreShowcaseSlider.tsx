@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import { Star, TrendUp, CaretLeft, CaretRight, MapPin } from "@phosphor-icons/react";
+import { TrendUp, CaretLeft, CaretRight, MapPin } from "@phosphor-icons/react";
 import { useLanguage } from "../context/LanguageContext";
 
 interface StoreItem {
@@ -9,10 +9,8 @@ interface StoreItem {
   location: { vi: string; en: string };
   imageUrl: string;
   imageAlt: { vi: string; en: string };
-  rating: number;
+  solutionTag: { vi: string; en: string };
   reviewsLabel: { vi: string; en: string };
-  growthPercent: string;
-  growthTag: { vi: string; en: string };
   growthMetric: { vi: string; en: string };
   rankPill: { vi: string; en: string };
 }
@@ -21,191 +19,145 @@ const STORES: StoreItem[] = [
   {
     id: "nail",
     name: {
-      vi: "Lily Nail & Boutique",
-      en: "Lily Nail & Boutique",
+      vi: "Luxe Nail Lounge",
+      en: "Luxe Nail Lounge",
     },
     category: {
-      vi: "Tiệm Nail & Mi Nghệ Thuật",
+      vi: "Nail Salon & Tiệm Mi Nghệ Thuật",
       en: "Luxury Nail & Lash Studio",
     },
     location: {
-      vi: "Quận 1, TP. Hồ Chí Minh",
-      en: "District 1, Ho Chi Minh City",
+      vi: "Houston, TX, USA",
+      en: "Houston, TX, USA",
     },
-    imageUrl: "https://images.unsplash.com/photo-1652869122685-c7792ef56ee2?w=1000&h=750&fit=crop&auto=format",
+    imageUrl: "https://images.unsplash.com/photo-1632345031435-8727f6897d53?w=1000&h=750&fit=crop&auto=format",
     imageAlt: {
-      vi: "Không gian tiệm nail cao cấp Lily Boutique",
-      en: "Lily Boutique luxury nail studio interior",
+      vi: "Không gian tiệm nail cao cấp Luxe Nail Lounge",
+      en: "Luxe Nail Lounge modern nail studio interior",
     },
-    rating: 4.9,
+    solutionTag: {
+      vi: "Website & Social Ads",
+      en: "Website & Social Ads",
+    },
     reviewsLabel: {
-      vi: "Google Maps • 186+ Đánh giá thật",
-      en: "Google Maps • +186 Verified Reviews",
-    },
-    growthPercent: "+280%",
-    growthTag: {
-      vi: "TĂNG TRƯỞNG",
-      en: "GROWTH",
+      vi: "Chuẩn tiệm Nail tại Mỹ • Thiết kế độc quyền",
+      en: "US Nail Studio Standard • Bespoke UI",
     },
     growthMetric: {
-      vi: "Lượt khách ghé & Đặt lịch online",
-      en: "Walk-ins & Online bookings",
+      vi: "Website chuẩn phong cách Mỹ & Đặt lịch online 24/7",
+      en: "US-Standard UI & 24/7 Online Booking",
     },
     rankPill: {
-      vi: "Top 1 Google Local Pack",
-      en: "Top 1 Google Local Pack",
+      vi: "Dự án tiêu biểu",
+      en: "Featured Project",
     },
   },
   {
     id: "spa",
     name: {
-      vi: "Aura De Luxe Spa & Wellness",
-      en: "Aura De Luxe Spa & Wellness",
+      vi: "Serenity Day Spa",
+      en: "Serenity Day Spa",
     },
     category: {
       vi: "Spa Trị Liệu & Chăm Sóc Sức Khỏe",
       en: "Holistic Spa & Wellness Lounge",
     },
     location: {
-      vi: "Thảo Điền, TP. Thủ Đức",
-      en: "Thao Dien, Thu Duc City",
+      vi: "Dallas, TX, USA",
+      en: "Dallas, TX, USA",
     },
     imageUrl: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1000&h=750&fit=crop&auto=format",
     imageAlt: {
-      vi: "Không gian trị liệu thư giãn tại Aura Spa",
-      en: "Aura De Luxe Spa relaxation treatment lounge",
+      vi: "Không gian trị liệu thư giãn tại Serenity Day Spa",
+      en: "Serenity Day Spa relaxation treatment lounge",
     },
-    rating: 5.0,
+    solutionTag: {
+      vi: "Light Luxury Web & SEO",
+      en: "Light Luxury Web & SEO",
+    },
     reviewsLabel: {
-      vi: "Google Maps • 342+ Đánh giá 5 sao",
-      en: "Google Maps • +342 5-Star Reviews",
-    },
-    growthPercent: "+195%",
-    growthTag: {
-      vi: "HỘI VIÊN VIP",
-      en: "VIP RETENTION",
+      vi: "Chuẩn Light Luxury • Tối ưu chuyển đổi",
+      en: "Light Luxury Standard • Conversion Focused",
     },
     growthMetric: {
-      vi: "Gói trị liệu VIP & Khách quay lại",
-      en: "VIP Packages & Member retention",
+      vi: "Bảng giá menu minh bạch & Đặt hẹn trực tuyến 24/7",
+      en: "Transparent Menu & 24/7 Online Scheduling",
     },
     rankPill: {
-      vi: "Top 1 Spa Thảo Điền",
-      en: "Top 1 Thao Dien Spa",
-    },
-  },
-  {
-    id: "clinic",
-    name: {
-      vi: "Dr. Vance Aesthetic Clinic",
-      en: "Dr. Vance Aesthetic Clinic",
-    },
-    category: {
-      vi: "Viện Da Liễu & Thẩm Mỹ Công Nghệ Cao",
-      en: "Aesthetic Dermatology & Skin Clinic",
-    },
-    location: {
-      vi: "Quận 3, TP. Hồ Chí Minh",
-      en: "District 3, Ho Chi Minh City",
-    },
-    imageUrl: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1000&h=750&fit=crop&auto=format",
-    imageAlt: {
-      vi: "Phòng khám da liễu hiện đại Dr. Vance",
-      en: "Dr. Vance Aesthetic Clinic consultation suite",
-    },
-    rating: 4.9,
-    reviewsLabel: {
-      vi: "Google Maps • 428+ Khách hàng tin cậy",
-      en: "Google Maps • +428 Trusted Patients",
-    },
-    growthPercent: "+340%",
-    growthTag: {
-      vi: "DOANH THU SỐ",
-      en: "HIGH TICKET",
-    },
-    growthMetric: {
-      vi: "Lượt tư vấn thẩm mỹ cao cấp",
-      en: "High-ticket aesthetic consultations",
-    },
-    rankPill: {
-      vi: "Top 1 Clinic Da Liễu Q.3",
-      en: "Top 1 Dermatology D3",
+      vi: "Dự án tiêu biểu",
+      en: "Featured Project",
     },
   },
   {
     id: "dining",
     name: {
-      vi: "Le Crépuscule Modern Dining",
-      en: "Le Crépuscule Modern Dining",
+      vi: "Golden Lotus Bistro",
+      en: "Golden Lotus Bistro",
     },
     category: {
-      vi: "Ẩm Thực Cao Cấp & Wine Lounge",
-      en: "Contemporary Fine Dining & Lounge",
+      vi: "Restaurant & Ẩm Thực Á Đông",
+      en: "Contemporary Asian Bistro & Dining",
     },
     location: {
-      vi: "Bến Nghé, Quận 1",
-      en: "Ben Nghe, District 1",
+      vi: "San Jose, CA, USA",
+      en: "San Jose, CA, USA",
     },
     imageUrl: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1000&h=750&fit=crop&auto=format",
     imageAlt: {
-      vi: "Không gian ẩm thực sang trọng Le Crépuscule",
-      en: "Le Crépuscule fine dining ambiance",
+      vi: "Không gian ẩm thực ấm cúng Golden Lotus Bistro",
+      en: "Golden Lotus Bistro dining ambiance",
     },
-    rating: 4.8,
+    solutionTag: {
+      vi: "Local Maps & Menu Web",
+      en: "Local Maps & Menu Web",
+    },
     reviewsLabel: {
-      vi: "Google Maps • 512+ Thực khách đánh giá",
-      en: "Google Maps • +512 Verified Diners",
-    },
-    growthPercent: "+215%",
-    growthTag: {
-      vi: "LẤP ĐẦY BÀN",
-      en: "TABLE BOOKING",
+      vi: "Menu trực quan di động • Tối ưu Google Maps",
+      en: "Mobile Digital Menu • Google Maps SEO",
     },
     growthMetric: {
-      vi: "Tỷ lệ đặt bàn trước cuối tuần",
-      en: "Advance weekend reservations",
+      vi: "Tìm kiếm vị trí dễ dàng & Đặt bàn 1 chạm",
+      en: "Frictionless Local Discovery & 1-Tap Booking",
     },
     rankPill: {
-      vi: "Top 1 Fine Dining gần bạn",
-      en: "Top 1 Fine Dining Nearby",
+      vi: "Dự án tiêu biểu",
+      en: "Featured Project",
     },
   },
   {
-    id: "salon",
+    id: "beauty",
     name: {
-      vi: "Bloom Hair Atelier",
-      en: "Bloom Hair Atelier",
+      vi: "Glow & Co. Beauty Salon",
+      en: "Glow & Co. Beauty Salon",
     },
     category: {
-      vi: "Salon Tóc & Studio Tạo Mẫu Cao Cấp",
-      en: "Luxury Hair Atelier & Stylist",
+      vi: "Beauty Salon & Thẩm Mỹ Viện",
+      en: "Beauty Salon & MedSpa Studio",
     },
     location: {
-      vi: "Phú Mỹ Hưng, Quận 7",
-      en: "Phu My Hung, District 7",
+      vi: "Miami, FL, USA",
+      en: "Miami, FL, USA",
     },
     imageUrl: "https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1000&h=750&fit=crop&auto=format",
     imageAlt: {
-      vi: "Không gian studio làm tóc Bloom Atelier",
-      en: "Bloom Hair Atelier modern salon interior",
+      vi: "Không gian Beauty Salon hiện đại Glow & Co",
+      en: "Glow & Co Beauty Salon modern interior",
     },
-    rating: 4.9,
+    solutionTag: {
+      vi: "Meta Ads & Social Care",
+      en: "Meta Ads & Social Care",
+    },
     reviewsLabel: {
-      vi: "Google Maps • 265+ Khách hàng VIP",
-      en: "Google Maps • +265 VIP Clients",
-    },
-    growthPercent: "+240%",
-    growthTag: {
-      vi: "LỊCH HẸN KÍN",
-      en: "FULL BOOKED",
+      vi: "Hình ảnh sang trọng • Quảng cáo chuẩn tệp",
+      en: "High-End Visuals • Targeted Advertising",
     },
     growthMetric: {
-      vi: "Tỷ lệ kín lịch hẹn dịch vụ định kỳ",
-      en: "Color & styling booked solid",
+      vi: "Chăm sóc Fanpage/Instagram & Quảng cáo quanh tiệm",
+      en: "Social Curation & Radius-Targeted Meta Ads",
     },
     rankPill: {
-      vi: "Top 1 Salon Phú Mỹ Hưng",
-      en: "Top 1 Salon Phu My Hung",
+      vi: "Dự án tiêu biểu",
+      en: "Featured Project",
     },
   },
 ];
@@ -462,49 +414,42 @@ export default function StoreShowcaseSlider() {
           </div>
         </div>
 
-        {/* Floating Badge 1: 4.9★ Google Business Profile (Top-Left) */}
-        <div className="absolute -top-5 -left-3 sm:-left-6 bg-white/95 backdrop-blur-xl rounded-[16px] p-3.5 border border-white/80 shadow-[0_12px_35px_-6px_rgba(15,23,42,0.12)] flex items-center gap-3 z-30 ring-1 ring-black/5">
-          <div className="w-10 h-10 rounded-[12px] bg-gradient-to-br from-amber/20 to-amber/5 flex items-center justify-center text-amber shrink-0 border border-amber/20">
-            <Star size={20} weight="fill" className="text-amber" />
+        {/* Floating Badge 1: US Local Business Verified (Top-Left - desktop/tablet) */}
+        <div className="hidden sm:flex absolute -top-5 -left-6 bg-white/95 backdrop-blur-xl rounded-[16px] p-3.5 border border-white/80 shadow-[0_12px_35px_-6px_rgba(15,23,42,0.12)] items-center gap-3 z-30 ring-1 ring-black/5">
+          <div className="w-10 h-10 rounded-[12px] bg-blue/10 flex items-center justify-center text-blue shrink-0 border border-blue/20">
+            <MapPin size={20} weight="duotone" className="text-blue" />
           </div>
           <div>
-            <div className="flex items-center gap-1 mb-0.5">
-              <span className="text-[15px] font-bold text-navy transition-all duration-300">
-                {activeStore.rating.toFixed(1)}
-              </span>
-              <div className="flex gap-0.5">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={11} weight="fill" className="text-amber" />
-                ))}
-              </div>
-            </div>
+            <span className="text-[14px] font-bold text-navy transition-all duration-300 block">
+              {activeStore.location[lang]}
+            </span>
             <p className="text-[11px] text-muted font-medium whitespace-nowrap transition-all duration-300">
               {activeStore.reviewsLabel[lang]}
             </p>
           </div>
         </div>
 
-        {/* Floating Badge 2: Growth Metric Indicator (Bottom-Right) */}
-        <div className="absolute -bottom-6 -right-2 sm:-right-4 bg-white/95 backdrop-blur-xl rounded-[16px] px-4 py-3 border border-white/80 shadow-[0_14px_40px_-6px_rgba(15,23,42,0.14)] flex items-center gap-3 z-30 ring-1 ring-black/5">
-          <div className="w-9 h-9 rounded-full bg-emerald/10 border border-emerald/20 flex items-center justify-center text-emerald shrink-0">
-            <TrendUp size={18} weight="bold" />
+        {/* Floating Badge 2: Integrated Digital Solution (Bottom - docked neatly on mobile) */}
+        <div className="absolute -bottom-5 left-3 right-3 sm:left-auto sm:-right-4 sm:-bottom-6 bg-white/95 backdrop-blur-xl rounded-[16px] px-3.5 py-2.5 sm:px-4 sm:py-3 border border-white/80 shadow-[0_14px_40px_-6px_rgba(15,23,42,0.14)] flex items-center gap-2.5 sm:gap-3 z-30 ring-1 ring-black/5">
+          <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-emerald/10 border border-emerald/20 flex items-center justify-center text-emerald shrink-0">
+            <TrendUp size={17} weight="bold" />
           </div>
-          <div>
+          <div className="min-w-0 flex-1">
             <div className="flex items-center gap-1.5">
-              <span className="text-[16px] font-bold text-navy transition-all duration-300">
-                {activeStore.growthPercent}
+              <span className="text-[13px] sm:text-[14px] font-bold text-navy transition-all duration-300 truncate">
+                {activeStore.solutionTag[lang]}
               </span>
-              <span className="text-[10px] font-bold uppercase tracking-wider text-emerald bg-emerald/10 px-1.5 py-0.5 rounded-md border border-emerald/20">
-                {activeStore.growthTag[lang]}
+              <span className="text-[9.5px] sm:text-[10px] font-bold uppercase tracking-wider text-emerald bg-emerald/10 px-1.5 py-0.5 rounded-md border border-emerald/20 shrink-0">
+                {lang === "vi" ? "ĐỒNG BỘ" : "INTEGRATED"}
               </span>
             </div>
-            <p className="text-[11px] text-muted font-medium whitespace-nowrap mt-0.5 transition-all duration-300">
+            <p className="text-[11px] text-muted font-medium truncate sm:whitespace-nowrap mt-0.5 transition-all duration-300">
               {activeStore.growthMetric[lang]}
             </p>
           </div>
         </div>
 
-        {/* Floating Mini Pill: Top 1 Local Pack (Center-Right) */}
+        {/* Floating Mini Pill: Verified Project (Center-Right) */}
         <div className="hidden sm:flex absolute top-1/2 -right-5 -translate-y-1/2 bg-navy text-white text-[12px] font-semibold px-4 py-2 rounded-full shadow-[0_10px_25px_-5px_rgba(9,14,23,0.3)] items-center gap-2.5 z-30 border border-white/20">
           <span className="w-2 h-2 rounded-full bg-emerald ring-4 ring-emerald/20" />
           <span className="whitespace-nowrap tracking-tight transition-all duration-300">
