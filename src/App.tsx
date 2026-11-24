@@ -14,6 +14,7 @@ import FinalCTA from "./components/FinalCTA";
 import Footer from "./components/Footer";
 import FloatingConsultation from "./components/FloatingConsultation";
 import ConsultationModal from "./components/ConsultationModal";
+import LegalModal from "./components/LegalModal";
 import LanguageLoadingOverlay from "./components/LanguageLoadingOverlay";
 
 function PageShell() {
@@ -55,6 +56,9 @@ function PageShell() {
 
       {/* Popup Modal with Consultation & Audit Form */}
       <ConsultationModal />
+
+      {/* Legal Modal for Privacy Policy & Terms of Service */}
+      <LegalModal />
     </>
   );
 }

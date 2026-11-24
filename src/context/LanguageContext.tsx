@@ -11,6 +11,9 @@ interface LanguageContextType {
   isConsultationOpen: boolean;
   openConsultation: () => void;
   closeConsultation: () => void;
+  legalModal: "privacy" | "terms" | null;
+  openLegalModal: (type: "privacy" | "terms") => void;
+  closeLegalModal: () => void;
   isSwitching: boolean;
   switchingTo: Language | null;
 }
@@ -25,6 +28,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   });
 
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
+  const [legalModal, setLegalModal] = useState<"privacy" | "terms" | null>(null);
   const [isSwitching, setIsSwitching] = useState(false);
   const [switchingTo, setSwitchingTo] = useState<Language | null>(null);
 
@@ -58,6 +62,14 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     setIsConsultationOpen(false);
   }, []);
 
+  const openLegalModal = useCallback((type: "privacy" | "terms") => {
+    setLegalModal(type);
+  }, []);
+
+  const closeLegalModal = useCallback(() => {
+    setLegalModal(null);
+  }, []);
+
   useEffect(() => {
     document.documentElement.lang = lang;
     if (lang === "en") {
@@ -81,9 +93,9 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     }
   }, [lang]);
 
-  // Lock body scroll when consultation modal is open
+  // Lock body scroll when consultation or legal modal is open
   useEffect(() => {
-    if (isConsultationOpen) {
+    if (isConsultationOpen || legalModal) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "unset";
@@ -91,7 +103,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     return () => {
       document.body.style.overflow = "unset";
     };
-  }, [isConsultationOpen]);
+  }, [isConsultationOpen, legalModal]);
 
   const content = TRANSLATIONS[lang];
 
@@ -105,6 +117,9 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
         isConsultationOpen,
         openConsultation,
         closeConsultation,
+        legalModal,
+        openLegalModal,
+        closeLegalModal,
         isSwitching,
         switchingTo,
       }}

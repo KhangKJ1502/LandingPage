@@ -10,6 +10,9 @@ export const SITE = {
   address: "75 E 3rd St, Ste 7, Sheridan, WY 82801, USA",
 };
 
+// Webhook endpoint (Google Apps Script) to record leads in Google Sheets & send email notifications
+export const FORM_WEBHOOK_URL = import.meta.env.VITE_FORM_WEBHOOK_URL || "";
+
 export const NAV_LINKS = [
   { label: "Dịch vụ", href: "#services" },
   { label: "Dự án", href: "#portfolio" },

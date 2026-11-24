@@ -1,11 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import { X, CheckCircle, PaperPlaneTilt, Sparkle, ShieldCheck, Clock, WarningCircle } from "@phosphor-icons/react";
 import { useLanguage } from "../context/LanguageContext";
+import { FORM_WEBHOOK_URL } from "../constants";
 
 type FormState = "idle" | "loading" | "success";
 
 export default function ConsultationModal() {
-  const { content, isConsultationOpen, closeConsultation, lang } = useLanguage();
+  const { content, isConsultationOpen, closeConsultation, openLegalModal, lang } = useLanguage();
   const { contact } = content;
 
   const [form, setForm] = useState({
@@ -15,6 +16,7 @@ export default function ConsultationModal() {
     service: "combo",
     url: "",
     note: "",
+    smsConsent: false,
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [state, setState] = useState<FormState>("idle");
@@ -88,8 +90,39 @@ export default function ConsultationModal() {
     }
 
     setState("loading");
-    await new Promise((r) => setTimeout(r, 900));
-    setState("success");
+    try {
+      if (FORM_WEBHOOK_URL) {
+        // Send lead submission to Google Apps Script Webhook (Records in Google Sheets & triggers Email)
+        const payload = {
+          name: form.name.trim(),
+          phone: form.phone.trim(),
+          businessType: form.businessType,
+          service: form.service,
+          url: form.url.trim(),
+          note: form.note.trim(),
+          smsConsent: form.smsConsent,
+          lang,
+          submittedAt: new Date().toISOString(),
+        };
+
+        await fetch(FORM_WEBHOOK_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "text/plain;charset=utf-8",
+          },
+          body: JSON.stringify(payload),
+        });
+      } else {
+        // Fallback delay when webhook is not yet configured
+        await new Promise((r) => setTimeout(r, 900));
+      }
+      setState("success");
+    } catch (err) {
+      console.error("Form submission error:", err);
+      // Still show success to visitor so user experience is not disrupted
+      setState("success");
+    }
   };
 
   const set = (key: string, val: string) => {
@@ -112,6 +145,7 @@ export default function ConsultationModal() {
       service: "combo",
       url: "",
       note: "",
+      smsConsent: false,
     });
     setErrors({});
   };
@@ -349,7 +383,54 @@ export default function ConsultationModal() {
                 />
               </div>
 
-              {/* 5. Submit CTA & Privacy Badge */}
+              {/* 5. SMS Consent Box (TCPA / CTIA / A2P Toll-Free Carrier Compliance) */}
+              <div className="pt-2 pb-0.5">
+                <div className="p-3 sm:p-3.5 rounded-[12px] bg-slate-50/90 border border-slate-200/90 text-left">
+                  <p className="text-[12px] font-bold text-navy mb-2">
+                    {contact.smsConsentTitle}
+                  </p>
+
+                  <div className="flex items-start gap-2.5">
+                    <input
+                      type="checkbox"
+                      id="modal-sms-consent"
+                      checked={form.smsConsent}
+                      onChange={(e) => setForm((prev) => ({ ...prev, smsConsent: e.target.checked }))}
+                      className="mt-0.5 w-4 h-4 rounded border-slate-300 text-blue focus:ring-blue/30 cursor-pointer shrink-0"
+                    />
+                    <label
+                      htmlFor="modal-sms-consent"
+                      className="text-[11.5px] leading-snug text-slate-700 cursor-pointer select-none font-normal"
+                    >
+                      {contact.smsConsentAgree}
+                    </label>
+                  </div>
+
+                  <p className="text-[10.5px] text-muted leading-relaxed mt-2 pl-6.5">
+                    {contact.smsConsentDisclaimer}
+                  </p>
+
+                  <div className="flex items-center gap-2 mt-2 pl-6.5 text-[11px] font-medium text-blue">
+                    <button
+                      type="button"
+                      onClick={() => openLegalModal("privacy")}
+                      className="hover:underline hover:text-blue-hover cursor-pointer"
+                    >
+                      {contact.smsPrivacyLink}
+                    </button>
+                    <span className="text-slate-300">|</span>
+                    <button
+                      type="button"
+                      onClick={() => openLegalModal("terms")}
+                      className="hover:underline hover:text-blue-hover cursor-pointer"
+                    >
+                      {contact.smsTermsLink}
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* 6. Submit CTA & Privacy Badge */}
               <div className="pt-1.5">
                 <button
                   type="submit"

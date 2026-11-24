@@ -3,7 +3,7 @@ import { useLanguage } from "../context/LanguageContext";
 import LanguageToggle from "./LanguageToggle";
 
 export default function Footer() {
-  const { content, openConsultation } = useLanguage();
+  const { content, openConsultation, openLegalModal } = useLanguage();
   const { site, nav, footer } = content;
 
   const scrollTo = (href: string) => {
@@ -176,13 +176,21 @@ export default function Footer() {
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[12px] sm:text-[12.5px] text-white/50">
-            <a href="#home" className="hover:text-white/80 transition-colors">
+            <button
+              type="button"
+              onClick={() => openLegalModal("privacy")}
+              className="hover:text-white/80 transition-colors cursor-pointer"
+            >
               {footer.privacyLink}
-            </a>
+            </button>
             <span>•</span>
-            <a href="#home" className="hover:text-white/80 transition-colors">
+            <button
+              type="button"
+              onClick={() => openLegalModal("terms")}
+              className="hover:text-white/80 transition-colors cursor-pointer"
+            >
               {footer.termsLink}
-            </a>
+            </button>
             <span>•</span>
             <button
               onClick={scrollToTop}

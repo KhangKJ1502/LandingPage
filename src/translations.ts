@@ -259,6 +259,11 @@ export interface TranslationContent {
     submitButton: string;
     submittingButton: string;
     privacyNote: string;
+    smsConsentTitle: string;
+    smsConsentAgree: string;
+    smsConsentDisclaimer: string;
+    smsPrivacyLink: string;
+    smsTermsLink: string;
     successTitle: string;
     successDesc: string;
     successNextTitle: string;
@@ -296,6 +301,15 @@ export interface TranslationContent {
     privacyLink: string;
     termsLink: string;
     backToTop: string;
+  };
+  legal: {
+    privacyTitle: string;
+    privacyLastUpdated: string;
+    privacySections: { title: string; content: string }[];
+    termsTitle: string;
+    termsLastUpdated: string;
+    termsSections: { title: string; content: string }[];
+    closeButton: string;
   };
 }
 
@@ -1085,6 +1099,11 @@ export const TRANSLATIONS: Record<"vi" | "en", TranslationContent> = {
       submitButton: "Nhận tư vấn miễn phí",
       submittingButton: "Đang gửi thông tin...",
       privacyNote: "Thông tin của bạn được bảo mật tuyệt đối 100% và chỉ dùng cho mục đích tư vấn dịch vụ.",
+      smsConsentTitle: "SMS Consent (Optional)",
+      smsConsentAgree: "I agree to receive SMS messages from Sunflower Marketing LLC regarding my consultation request, appointment reminders, service updates, and customer support.",
+      smsConsentDisclaimer: "Message frequency varies. Message and data rates may apply. Reply STOP to opt out. Reply HELP for help. Consent is not a condition of purchase.",
+      smsPrivacyLink: "Privacy Policy",
+      smsTermsLink: "Terms & Conditions",
       successTitle: "Yêu cầu tư vấn đã được tiếp nhận!",
       successDesc: "Cảm ơn bạn đã liên hệ cùng Sunflower Marketing LLC. Chuyên viên sẽ rà soát thông tin cơ sở và liên hệ tư vấn trong vòng 24 giờ.",
       successNextTitle: "Bước tiếp theo:",
@@ -1157,6 +1176,61 @@ export const TRANSLATIONS: Record<"vi" | "en", TranslationContent> = {
       privacyLink: "Chính sách bảo mật",
       termsLink: "Điều khoản hợp tác",
       backToTop: "Về đầu trang",
+    },
+    legal: {
+      privacyTitle: "Chính Sách Bảo Mật (Privacy Policy)",
+      privacyLastUpdated: "Cập nhật lần cuối: Ngày 23 tháng 11 năm 2026",
+      privacySections: [
+        {
+          title: "1. Giới thiệu & Cam kết bảo mật",
+          content: "Sunflower Marketing LLC (\"chúng tôi\", \"công ty\") cam kết tôn trọng và bảo vệ tuyệt đối quyền riêng tư cùng thông tin cá nhân của quý khách hàng theo các tiêu chuẩn pháp lý tại Hoa Kỳ.",
+        },
+        {
+          title: "2. Thông tin thu thập",
+          content: "Chúng tôi chỉ thu thập thông tin do quý khách tự nguyện cung cấp qua các biểu mẫu tư vấn, bao gồm: Họ và tên, số điện thoại, địa chỉ email, tên cơ sở kinh doanh, đường dẫn website hoặc Google Maps, và các mục tiêu tiếp thị cụ thể.",
+        },
+        {
+          title: "3. Mục đích sử dụng thông tin",
+          content: "Thông tin thu thập được sử dụng để cung cấp dịch vụ tư vấn Digital Marketing, gửi tài liệu đề xuất giải pháp, xác nhận lịch hẹn tư vấn và hỗ trợ kỹ thuật khách hàng.",
+        },
+        {
+          title: "4. Chính sách bảo mật dữ liệu SMS & Viễn thông di động (A2P 10DLC & TCPA Compliance)",
+          content: "Tuyệt đối không có bất kỳ thông tin di động (mobile information) nào được chia sẻ, cho thuê hoặc bán cho bên thứ ba / đối tác liên kết vì mục đích tiếp thị hoặc quảng cáo thương mại. Toàn bộ dữ liệu đồng thuận tham gia nhận tin nhắn văn bản (text messaging originator opt-in data and consent) sẽ được bảo mật nghiêm ngặt và không bao giờ được chia sẻ với bất kỳ bên thứ ba nào.",
+        },
+        {
+          title: "5. Quyền từ chối nhận tin (Opt-out)",
+          content: "Quý khách có thể hủy nhận tin nhắn SMS bất cứ lúc nào bằng cách phản hồi cú pháp STOP. Để nhận trợ giúp, soạn tin nhắn HELP hoặc liên hệ hotline +1 (866) 956-9413 hoặc email hello@sunflowermarketing.com.",
+        },
+        {
+          title: "6. Thông tin liên hệ",
+          content: "Sunflower Marketing LLC. Địa chỉ: 75 E 3rd St, Ste 7, Sheridan, WY 82801, USA. Hotline: +1 (866) 956-9413. Email: hello@sunflowermarketing.com.",
+        },
+      ],
+      termsTitle: "Điều Khoản Dịch Vụ (Terms & Conditions)",
+      termsLastUpdated: "Cập nhật lần cuối: Ngày 23 tháng 11 năm 2026",
+      termsSections: [
+        {
+          title: "1. Thỏa thuận dịch vụ",
+          content: "Khi truy cập website hoặc gửi yêu cầu tư vấn tới Sunflower Marketing LLC, quý khách đồng ý tuân thủ các Điều khoản dịch vụ này cùng các quy định pháp luật hiện hành tại Hoa Kỳ.",
+        },
+        {
+          title: "2. Phạm vi dịch vụ",
+          content: "Sunflower Marketing LLC cung cấp dịch vụ tiếp thị kỹ thuật số chuyên sâu cho doanh nghiệp tại Mỹ, bao gồm: Thiết kế Website chuẩn chuyển đổi, Quản trị mạng xã hội (Social Media), Quảng cáo Meta & Google Ads, và Tối ưu hóa Google Maps Local SEO.",
+        },
+        {
+          title: "3. Điều khoản nhận tin nhắn SMS (SMS Messaging Terms & Conditions)",
+          content: "Khi đánh dấu chọn đồng thuận nhận SMS: (1) Quý khách đồng ý nhận tin nhắn từ Sunflower Marketing LLC liên quan đến yêu cầu tư vấn, nhắc lịch hẹn và cập nhật dịch vụ. (2) Tần suất tin nhắn thay đổi theo tiến trình làm việc (Message frequency varies). (3) Cước phí tin nhắn và dữ liệu có thể áp dụng theo quy định của nhà mạng (Message and data rates may apply). (4) Quý khách có thể soạn STOP để dừng nhận tin nhắn bất kỳ lúc nào, hoặc soạn HELP để nhận trợ giúp. (5) Các nhà mạng viễn thông không chịu trách nhiệm đối với tin nhắn bị chậm trễ hoặc không gửi được. (6) Việc đồng ý nhận tin nhắn không phải là điều kiện bắt buộc để mua hay sử dụng dịch vụ.",
+        },
+        {
+          title: "4. Bảo mật & Trách nhiệm pháp lý",
+          content: "Chúng tôi nỗ lực tối đa để đảm bảo tính chính xác và an toàn của hệ thống. Sunflower Marketing LLC không chịu trách nhiệm đối với các tổn thất gián tiếp ngoài tầm kiểm soát hợp lý.",
+        },
+        {
+          title: "5. Luật điều chỉnh",
+          content: "Các điều khoản này được điều chỉnh và giải thích theo luật pháp của Tiểu bang Wyoming, Hợp chúng quốc Hoa Kỳ.",
+        },
+      ],
+      closeButton: "Đóng cửa sổ",
     },
   },
 
@@ -1945,6 +2019,11 @@ export const TRANSLATIONS: Record<"vi" | "en", TranslationContent> = {
       submitButton: "Get Free Consultation",
       submittingButton: "Submitting details...",
       privacyNote: "Your information is 100% confidential and used exclusively for your consultation session.",
+      smsConsentTitle: "SMS Consent (Optional)",
+      smsConsentAgree: "I agree to receive SMS messages from Sunflower Marketing LLC regarding my consultation request, appointment reminders, service updates, and customer support.",
+      smsConsentDisclaimer: "Message frequency varies. Message and data rates may apply. Reply STOP to opt out. Reply HELP for help. Consent is not a condition of purchase.",
+      smsPrivacyLink: "Privacy Policy",
+      smsTermsLink: "Terms & Conditions",
       successTitle: "Consultation Request Received!",
       successDesc: "Thank you for reaching out to Sunflower Marketing LLC. Our specialist will review your venue details and connect within 24 hours.",
       successNextTitle: "Next Steps:",
@@ -2015,8 +2094,63 @@ export const TRANSLATIONS: Record<"vi" | "en", TranslationContent> = {
       auditButton: "Get Free Consultation",
       copyright: "Sunflower Marketing LLC. All rights reserved. US Digital Marketing Solutions.",
       privacyLink: "Privacy Policy",
-      termsLink: "Terms of Engagement",
+      termsLink: "Terms & Conditions",
       backToTop: "Back to Top",
+    },
+    legal: {
+      privacyTitle: "Privacy Policy",
+      privacyLastUpdated: "Last Updated: November 23, 2026",
+      privacySections: [
+        {
+          title: "1. Introduction & Commitment",
+          content: "Sunflower Marketing LLC (\"we\", \"our\", or \"us\") respects your privacy and is dedicated to protecting personal information collected through our website and service consultation touchpoints.",
+        },
+        {
+          title: "2. Information We Collect",
+          content: "We collect information you provide voluntarily when submitting our assessment or inquiry form, including: your full name, phone number, email address, business category, website or Google Maps URL, and project notes.",
+        },
+        {
+          title: "3. How We Use Information",
+          content: "We utilize your information exclusively to deliver digital marketing assessments, communicate project proposals, confirm appointments, and provide client service support.",
+        },
+        {
+          title: "4. Mobile Information & SMS Privacy Policy (Strict TCPA / CTIA Compliance)",
+          content: "No mobile information will be shared with third parties/affiliates for marketing/promotional purposes. All other categories exclude text messaging originator opt-in data and consent; this information will not be shared with any third parties.",
+        },
+        {
+          title: "5. Opt-Out & Contact Preferences",
+          content: "You may opt out of receiving SMS communications at any time by texting STOP in response to any message. Text HELP for customer support, or reach us at hello@sunflowermarketing.com or +1 (866) 956-9413.",
+        },
+        {
+          title: "6. Contact Us",
+          content: "Sunflower Marketing LLC. Address: 75 E 3rd St, Ste 7, Sheridan, WY 82801, USA. Toll-Free: +1 (866) 956-9413. Email: hello@sunflowermarketing.com.",
+        },
+      ],
+      termsTitle: "Terms & Conditions",
+      termsLastUpdated: "Last Updated: November 23, 2026",
+      termsSections: [
+        {
+          title: "1. Acceptance of Terms",
+          content: "By accessing this website or requesting consultation services, you agree to be bound by these Terms & Conditions and all applicable laws and regulations of the United States.",
+        },
+        {
+          title: "2. Services Overview",
+          content: "Sunflower Marketing LLC specializes in digital marketing consulting, conversion-optimized web design, social media marketing, Meta & Google Ads management, and local SEO services for US businesses.",
+        },
+        {
+          title: "3. SMS Messaging Terms & Conditions",
+          content: "By checking the SMS consent box: (1) You agree to receive SMS text messages from Sunflower Marketing LLC regarding consultation requests, appointment reminders, service updates, and customer support. (2) Message frequency varies based on engagement. (3) Message and data rates may apply per your mobile carrier plan. (4) You may opt out anytime by replying STOP. After texting STOP, you will receive a confirmation message that you have been unsubscribed. (5) For help, reply HELP or contact hello@sunflowermarketing.com or call +1 (866) 956-9413. (6) Carriers are not liable for delayed or undelivered messages. (7) Consent is not a condition of purchase.",
+        },
+        {
+          title: "4. Intellectual Property & Deliverables",
+          content: "All strategic recommendations, digital assets, and codebases developed by Sunflower Marketing LLC are provided under clear client assignment terms upon contract execution and payment.",
+        },
+        {
+          title: "5. Governing Law",
+          content: "These Terms are governed by and construed in accordance with the laws of the State of Wyoming, United States.",
+        },
+      ],
+      closeButton: "Close",
     },
   },
 };
